@@ -53,7 +53,7 @@ education:
       Solar Orbiter/High energy telescope (HET) observations of solar energetic particles and anomalous cosmic rays.
     button:
       text: Download dissertation
-      url: /resume.pdf
+      url: Empty
       icon: hero/arrow-down-tray
   - degree: MS Astrophysics
     institution: Nanjing University

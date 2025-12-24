@@ -17,7 +17,7 @@ sections:
       # Show a call-to-action button under your biography? (optional)
       button:
         text: Download CV
-        url: uploads/resume.pdf
+        url: uploads/CV_20250929-Shandong.pdf
       headings:
         about: ''
         education: ''
@@ -41,9 +41,7 @@ sections:
       title: '📚 My Research'
       subtitle: ''
       text: |-
-        Use this area to speak to your mission. I'm a research scientist in the Moonshot team at DeepMind. I blog about machine learning, deep learning, and moonshots.
-
-        I apply a range of qualitative and quantitative methods to comprehensively investigate the role of science and technology in the economy.
+      Hi, I’m Zigong Xu — a postdoctoral researcher studying space weather, energetic particles, and radiation environments in space. I work with data from space missions and develop analysis tools using Python and machine learning. I’m interested in both fundamental science and practical, data-driven solutions.
 
         Please reach out to collaborate 😃
     design:
@@ -87,7 +85,7 @@ sections:
       # Page type to display. E.g. post, talk, publication...
       page_type: blog
       # Choose how many pages you would like to display (0 = all pages)
-      count: 10
+      count: 3
       # Filter on criteria
       filters:
         author: ''
