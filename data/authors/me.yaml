@@ -2,10 +2,10 @@ schema: hugoblox/author/v1
 slug: me
 is_owner: true
 name:
-  display: Dr. Alex Johnson
-  given: Alex
-  family: Johnson
-  alternate: ''  # Example: 王伟
+  display: Dr. Zigong Xu
+  given: Zigong 
+  family: Xu
+  alternate: '徐子贡'  # Example: 王伟
   pronunciation: ''  # Example: Wáng Wěi
   pronouns: he/him
 postnominals:
@@ -13,37 +13,34 @@ postnominals:
   - MIEEE
 status:
   icon: "☕️"
-role: Senior AI Research Scientist
+role: Postdoctoral Researcher
 bio: |
-  Alex Johnson is a Senior AI Research Scientist at Meta AI. His research
-  has been published in top conferences like NeurIPS and ICML, with over
-  10,000 citations. Alex is passionate about pushing the boundaries of AI
-  while ensuring ethical development.
+  Zigong Xu is a postdoctoral researcher specializing in space weather and high-energy astrophysics. His work focuses on solar energetic particles, radiation environments in the heliosphere and at the lunar surface, and the interaction between energetic particles and space plasma. He combines observational data from space missions with statistical modeling and machine learning techniques to address fundamental problems in space physics and radiation risk assessment.
+
 
 affiliations:
-  - name: Meta AI
-    url: https://ai.meta.com/
+  - name: California Institute of Technology
+    url: https://www.caltech.edu/
 
 links:
   - icon: at-symbol
-    url: mailto:alex.johnson@example.com
+    url: mailto:zgxu@caltech.edu
     label: E-mail Me
   - icon: brands/x
-    url: https://x.com/example
+    url: https://x.com/zigong_xu
   - icon: brands/github
-    url: https://github.com/example
+    url: https://github.com/zigongxu
   - icon: brands/linkedin
-    url: https://www.linkedin.com/in/example/
+    url: https://www.linkedin.com/in/zigongxu/
   - icon: academicons/google-scholar
-    url: https://scholar.google.com/citations?user=example
+    url: https://scholar.google.com/citations?user=o1RDduwAAAAJ&hl=en
   - icon: academicons/orcid
-    url: https://orcid.org/0000-0002-1825-0097
+    url: https://orcid.org/0000-0002-9246-996X
 
 interests:
-  - Large Language Models
-  - Computer Vision
-  - Reinforcement Learning
-  - AI Ethics
+  - Space Weather
+  - High-Energy Astrophysics
+  - Radiation Risk Assessment
 
 education:
   - degree: PhD Computer Science
