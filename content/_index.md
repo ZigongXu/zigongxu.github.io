@@ -41,9 +41,9 @@ sections:
       title: '📚 My Research'
       subtitle: ''
       text: |-
-      Hi, I’m Zigong Xu — a postdoctoral researcher studying space weather, energetic particles, and radiation environments in space. I work with data from space missions and develop analysis tools using Python and machine learning. I’m interested in both fundamental science and practical, data-driven solutions.
+        Hi, I’m Zigong Xu — a postdoctoral researcher studying space weather, energetic particles, and radiation environments in space. I work with data from space missions and develop analysis tools using Python and machine learning. I’m interested in both fundamental science and practical, data-driven solutions.
 
-      Please reach out to collaborate 😃
+        Please reach out to collaborate 😃
     design:
       columns: '1'
   - block: collection
