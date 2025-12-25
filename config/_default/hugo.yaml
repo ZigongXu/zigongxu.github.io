@@ -6,7 +6,7 @@
 # Website name (set in params.yaml under hugoblox.branding.name)
 title: 'Zigong Xu'
 # Website URL
-baseURL: 'https://example.com/'
+baseURL: 'https://zigongxu.github.io/'
 
 ############################
 ## LANGUAGE
@@ -53,3 +53,7 @@ security:
   _merge: deep
 sitemap:
   _merge: deep
+#sitemap:
+#  filename: sitemap.xml
+#  changefreq: weekly
+#  priority: 0.5
