@@ -39,6 +39,7 @@ links:
 
 interests:
   - Space Weather
+  - Solar Energetic Particles
   - High-Energy Astrophysics
   - Radiation Risk Assessment
 
@@ -53,7 +54,7 @@ education:
       Solar Orbiter/High energy telescope (HET) observations of solar energetic particles and anomalous cosmic rays.
     button:
       text: Download dissertation
-      url: Empty
+      url: https://macau.uni-kiel.de/servlets/MCRFileNodeServlet/macau_derivate_00005466/ZigongXU-Thesis_submit_Final_V2_AfterCorrection.pdf
       icon: hero/arrow-down-tray
   - degree: MS Astrophysics
     institution: Nanjing University
