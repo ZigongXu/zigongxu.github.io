@@ -65,7 +65,15 @@ education:
     end: 2013-05-31
 
 experience:
-   - role: Postdoc@Caltech
+   - role: Postdoc
+     org: Caltech
+     start: 2023-09-01
+     summary: | 
+        to be filled 
+     button:
+        text: View portfolio
+        url: 'https://zigongxu.people.caltech.edu/'
+        icon: hero/arrow-down-tray
   #- role: Senior AI Research Scientist
   #  org: Meta AI
   #  start: 2020-01-01
