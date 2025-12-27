@@ -13,7 +13,7 @@ hugoblox:
   # ────────────────────────────────────────────────────────────────────────────
   identity:
     # Site name - shown in navbar, footer, copyright, and browser title by default
-    name: "Your Name"
+    name: "Zigong Xu"
     # Legal entity for copyright notices (defaults to name if not set)
     organization: ""
     # Schema.org type for structured data
@@ -232,7 +232,7 @@ hugoblox:
   # ────────────────────────────────────────────────────────────────────────────
   repository:
     enable: false
-    url: ""                             # e.g., https://github.com/username/repo
+    url: "https://github.com/ZigongXu/zigongxu.github.io"                             # e.g., https://github.com/username/repo
     branch: main
     content_dir: content
 

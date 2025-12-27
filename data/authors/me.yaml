@@ -6,7 +6,7 @@ name:
   given: Zigong 
   family: Xu
   alternate: '徐子贡'  # Example: 王伟
-  pronunciation: ''  # Example: Wáng Wěi
+  pronunciation: 'Xu Zigong'  # Example: Wáng Wěi
   pronouns: he/him
 postnominals:
   - PhD
@@ -14,7 +14,7 @@ status:
   icon: "☕️"
 role: Postdoctoral Researcher
 bio: |
-  Zigong Xu is a postdoctoral researcher specializing in space weather and high-energy astrophysics. His work focuses on solar energetic particles, radiation environments in the heliosphere and at the lunar surface, and the interaction between energetic particles and space plasma. He combines observational data from space missions with statistical modeling and machine learning techniques to address fundamental problems in space physics and radiation risk assessment. The personal website is still developing. Please looking forward to my progress.
+  Zigong Xu is a postdoctoral researcher specializing in space weather and high-energy astrophysics. His work focuses on solar energetic particles, radiation environments in the heliosphere and at the lunar surface, and the interaction between energetic particles and space plasma. He combines observational data from space missions with statistical modeling and machine learning techniques to address fundamental problems in space physics and radiation risk assessment. The personal website is still developing. Please looking forward to the progress.
 
 
 affiliations:
@@ -65,22 +65,23 @@ education:
     end: 2013-05-31
 
 experience:
-  - role: Senior AI Research Scientist
-    org: Meta AI
-    start: 2020-01-01
-    summary: |
-      Leading research on multimodal AI systems. Contributed to Llama 2 and other open-source models.
-    button:
-      text: View portfolio
-      url: /
-      icon: hero/arrow-down-tray
-  - role: AI Research Intern
-    org: OpenAI
-    start: 2019-06-01
-    end: 2019-12-31
-    summary: |
-      Worked on GPT-3 scaling. Co-authored paper on prompt engineering.
-
+   To be file
+  #- role: Senior AI Research Scientist
+  #  org: Meta AI
+  #  start: 2020-01-01
+  #  summary: |
+  #    Leading research on multimodal AI systems. Contributed to Llama 2 and other open-source models.
+  #  button:
+  #    text: View portfolio
+  #    url: /
+  #    icon: hero/arrow-down-tray
+  #- role: AI Research Intern
+  #  org: OpenAI
+  #  start: 2019-06-01
+  #  end: 2019-12-31
+  #  summary: |
+  #    Worked on GPT-3 scaling. Co-authored paper on prompt engineering.
+#
 skills:
   - name: Technical Skills
     items:
@@ -88,28 +89,29 @@ skills:
         level: 5
       - label: Machine Learning
         level: 5
-      - label: Cloud Computing
-        level: 4
   - name: Research & Communication
     items:
       - label: Academic Writing
         level: 5
       - label: Conference Presentations
         level: 4
-      - label: Grant Proposals
-        level: 4
+      #- label: Grant Proposals
+      #  level: 4
 
 languages:
-  - name: English
+  - name: Mandrian
     level: 5
-    label: Native
-  - name: Spanish
-    level: 4
-    label: Fluent
+    lable: Native
+  - name: English
+    level: 3
+    label: Professional
+  #- name: Spanish
+  #  level: 4
+  #  label: Fluent
 
 awards:
-  - title: Best Paper Award
-    awarder: NeurIPS
-    date: "2022-12-01"
-    summary: Awarded for groundbreaking work on efficient training of large models.
+  - title: NASA group reward PSP
+    awarder: 
+    date: ""
+    summary: 
     icon: hero/trophy
