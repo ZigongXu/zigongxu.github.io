@@ -17,7 +17,7 @@ sections:
       # Show a call-to-action button under your biography? (optional)
       button:
         text: Download CV
-        url: uploads/CV_20250929-Shandong.pdf
+        url: uploads/CV__20251228.pdf
       headings:
         about: ''
         education: ''
