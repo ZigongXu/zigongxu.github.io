@@ -60,7 +60,7 @@ sections:
   - block: collection
     content:
       title: Recent/Selected Publications
-      text: ''
+      text: 'Full list of Paper <a href=" https://ui.adsabs.harvard.edu/public-libraries/c6ahuEHzQ82MrHBbTvhEYw" style="color: blue; text-decoration: underline;">ADS</a>'
       filters:
         folders:
           - selectedpublications
