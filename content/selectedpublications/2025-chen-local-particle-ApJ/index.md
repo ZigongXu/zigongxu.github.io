@@ -1,15 +1,14 @@
-````markdown
 ---
 title: "Local Particle Acceleration in an ICME-in-Sheath Structure Observed by Solar Orbiter"
 authors:
-- chen
-- li
+- chenxiaomin
+- lichuan
 - me
-- nicolaou
+- nicolaougeorgios
 - kollhoff
 - ho
 - wimmer-schweingruber
-- owen
+- christopherjowen
 
 date: "2025-12-01T00:00:00Z"
 publishDate: "2025-12-01T00:00:00Z"
@@ -22,6 +21,7 @@ summary: "Local particle acceleration in an ICME-in-sheath structure observed by
 
 tags:
   - Solar energetic particles
+  - Coronal Mass Ejection(CME)
 
 featured: false
 
@@ -39,4 +39,3 @@ slides: ""
 
 Short description.
 
-````

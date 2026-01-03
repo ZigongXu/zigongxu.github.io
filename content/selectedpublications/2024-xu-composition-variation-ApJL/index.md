@@ -11,7 +11,7 @@ authors:
 - christian
 - wiedenbeck
 - mcnutt
-- DGmitchell
+- dgmitchell
 - mason
 - kouloumvakos
 - wimmer-schweingruber

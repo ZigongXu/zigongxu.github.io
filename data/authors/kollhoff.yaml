@@ -1,8 +1,8 @@
 schema: hugoblox/author/v1
 slug: kollhoff
 name:
-  display: "Kollhoff"
-  given: ""
+  display: "Alexander, Kollhoff"
+  given: "Alexander"
   family: "Kollhoff"
 role: ""
 links: []

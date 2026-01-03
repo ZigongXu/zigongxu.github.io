@@ -1,0 +1,34 @@
+<script>
+  // Highlight "Zigong Xu" in publication citation author lists
+  (function() {
+    function highlightAuthorName() {
+      // Find all citation author containers
+      const authorContainers = document.querySelectorAll('.li-cite-author, .article-metadata.li-cite-author');
+      
+      authorContainers.forEach(container => {
+        // Find all span elements within the container
+        const spans = container.querySelectorAll('span');
+        
+        spans.forEach(span => {
+          // Check if the span contains "Zigong Xu"
+          if (span.textContent.trim() === 'Zigong Xu' || 
+              span.textContent.includes('Zigong Xu')) {
+            // Apply highlighting styles
+            span.style.fontWeight = 'bold';
+            span.style.color = 'var(--bs-primary, #0d6efd)';
+            // Optional: add a class for additional styling
+            span.classList.add('author-highlight');
+          }
+        });
+      });
+    }
+    
+    // Run when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', highlightAuthorName);
+    } else {
+      highlightAuthorName();
+    }
+  })();
+</script>
+

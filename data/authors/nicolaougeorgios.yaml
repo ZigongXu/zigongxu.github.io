@@ -1,8 +1,8 @@
 schema: hugoblox/author/v1
 slug: nicolaou
 name:
-  display: Nicolaou
-  given: ""
+  display: "Nicolaou, Georgios"
+  given: "Georgios"
   family: "Nicolaou"
 role: ""
 links: []
