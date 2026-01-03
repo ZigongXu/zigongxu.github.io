@@ -1,0 +1,21 @@
+/* Override automatic capitalization for author names so initials keep their case */
+/* Broad selectors to cover theme variants; adjust if your theme uses different classes */
+.author,
+.authors,
+.author-name,
+.page-meta .authors,
+.page-meta .author,
+.hb-author,
+.hb-authors,
+.hb-author a,
+.article-meta .author,
+.article-meta .authors {
+	text-transform: none !important;
+}
+
+/* Also prevent capitalization for links inside author blocks */
+.authors a,
+.author a {
+	text-transform: none !important;
+}
+

@@ -4,7 +4,7 @@
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
 # Website name (set in params.yaml under hugoblox.branding.name)
-title: 'Zigong Xu'
+title: 'Dr Zigong Xu'
 # Website URL
 baseURL: 'https://zigongxu.github.io/'
 

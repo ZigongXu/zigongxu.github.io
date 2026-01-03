@@ -1,0 +1,8 @@
+schema: hugoblox/author/v1
+slug: cummings
+name:
+  display: "A. C. Cummings"
+  given: "A. C."
+  family: "Cummings"
+role: ""
+links: []

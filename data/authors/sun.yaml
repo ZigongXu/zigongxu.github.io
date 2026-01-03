@@ -1,0 +1,8 @@
+schema: hugoblox/author/v1
+slug: sun
+name:
+  display: Sun
+  given: ""
+  family: "Sun"
+role: ""
+links: []

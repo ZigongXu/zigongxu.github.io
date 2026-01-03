@@ -2,7 +2,7 @@
 title: 'Experience'
 date: 2023-10-24
 type: landing
-
+math: true
 design:
   spacing: '5rem'
 

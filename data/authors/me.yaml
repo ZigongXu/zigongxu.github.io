@@ -2,7 +2,7 @@ schema: hugoblox/author/v1
 slug: me
 is_owner: true
 name:
-  display: Dr. Zigong Xu
+  display: Zigong Xu
   given: Zigong 
   family: Xu
   alternate: '徐子贡'  # Example: 王伟
@@ -43,37 +43,54 @@ interests:
   - Radiation Risk Assessment
 
 education:
-  - degree: PhD Natural Sciences (Doctorate in Natural Sciences (Dr. rer. nat.))
+  - degree: Ph.D. in Natural Sciences (Doctorate in Natural Sciences (Dr. rer. nat.)
     institution: Kiel University
-    Title: Energetic particles in the heliosphere; gut (cum laude)
+    title: Energetic particles in the heliosphere; *gut* (cum laude)
     start: 2018-09-01
     end: 2023-07-30
     summary: |
-      Lunar Lander Neutron and Dosimetry Experiments (LND) onboard the Chang'E-4 Mission.
-      Solar Orbiter/High energy telescope (HET) observations of solar energetic particles and anomalous cosmic rays.
+      Member of Lunar Lander Neutron and Dosimetry Experiments (LND) onboard the Chang'E-4 Mission.
+      Member of Solar Orbiter/High energy telescope (HET);
+      Observations; solar energetic particles and anomalous cosmic rays; instrumental calibration and data analysis; particle radiation risk assessment; particle detection in space and planetary surface (Moon and Mars)
     button:
       text: Download dissertation
       url: https://macau.uni-kiel.de/servlets/MCRFileNodeServlet/macau_derivate_00005466/ZigongXU-Thesis_submit_Final_V2_AfterCorrection.pdf
       icon: hero/arrow-down-tray
-  - degree: MS Astrophysics
+  - degree: MS in Astrophysics
     institution: Nanjing University
     start: 2015-09-01
     end: 2018-06-30
-  - degree: BS 
-    institution: MIT
-    start: 2009-09-01
-    end: 2013-05-31
+  - degree: BS in Space Science and Technology
+    institution: Nanjing University@School of Astronomy and Space Science
+    start: 2011-09-01
+    end: 2015-06-30
 
 experience:
    - role: Postdoc
      org: Caltech
      start: 2023-09-01
      summary: | 
-        to be filled 
+        **Team Member of Parker Solar Probe/IS$\odot$IS and IMAP/HIT instrument teams**  \
+        Research interests: Solar Energetic Particles(SEP) events and space weather research.  \
+        My studies focus on the observation of SEPs and cosmic rays using state-of-the-art space instruments, evaluation of the radiation hazard of energetic particle events in the Cis-Lunar region, and machine learning applications in space physics and space weather.
      button:
         text: View portfolio
         url: 'https://zigongxu.people.caltech.edu/'
         icon: hero/arrow-down-tray
+   - role: Research Assistant/Project manager
+     org: Kiel University
+     start: 2018-09-01
+     end: 2023-07-30
+     summary: |
+        Primary responsible scientist for Lunar Lander Neutron and Dosimetry Experiments on board Chang'E-4: instrument operations and data analysis; reported the first SEP event detected by LND; derived the first lunar-surface albedo proton spectra. \
+        Studied solar energetic particles and anomalous cosmic rays using Solar Orbiter/High energy telescope (HET) observations. [LND Project](https://www.physik.uni-kiel.de/en/institutes/departments/extraterrestrial-physics/research/lunar-lander-neutrons-dosimetry-on-change-4) ; [Solar Orbiter HET]()
+     button:
+        text: LND related
+        icon: hero/arrow-right-circle
+        url: https://www.physik.uni-kiel.de/en/institutes/departments/extraterrestrial-physics/research/lunar-lander-neutrons-dosimetry-on-change-4
+        style: primary  
+
+
   #- role: Senior AI Research Scientist
   #  org: Meta AI
   #  start: 2020-01-01
@@ -107,9 +124,9 @@ skills:
       #  level: 4
 
 languages:
-  - name: Mandrian
+  - name: Mandarin
     level: 5
-    lable: Native
+    label: Native
   - name: English
     level: 3
     label: Professional
@@ -121,5 +138,10 @@ awards:
   - title: National Aeronautics and Space Administration Group Achievement Award of Parker Solar Probe Team
     awarder: National Aeronautics and Space Administration
     date: ""
-    summary: 
+    summary: ""
     icon: hero/trophy
+  #- title: China National National scholarship for graduate students
+  #  awarder: Ministry of Education of China
+  #  date: 2017-10-01
+  #  summary: 
+  #  icon: hero/trophy

@@ -1,0 +1,8 @@
+schema: hugoblox/author/v1
+slug: romeo
+name:
+  display: "O. Romeo"
+  given: "O."
+  family: "Romeo"
+role: ""
+links: []

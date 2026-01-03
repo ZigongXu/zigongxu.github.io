@@ -1,0 +1,8 @@
+schema: hugoblox/author/v1
+slug: heber
+name:
+  display: "Bernd Heber"
+  given: "Bernd"
+  family: "Heber"
+role: ""
+links: []
