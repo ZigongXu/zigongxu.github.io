@@ -1,4 +1,3 @@
-````markdown
 ---
 title: "Species-dependent Variability in the Energy Spectra of Intense Solar Energetic Particle Events Observed by PSP/ISʘIS/EPI-Hi/LET"
 authors:
@@ -39,14 +38,7 @@ hugoblox:
   ids:
     doi: 10.3847/1538-4365/ae07d5
 
-links:
-  - type: doi
-    url: https://doi.org/10.3847/1538-4365/ae07d5
-
 projects: []
 slides: ""
 ---
 
-Short description.
-
-````

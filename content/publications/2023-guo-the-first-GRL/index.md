@@ -34,12 +34,7 @@ hugoblox:
   ids:
     doi: 10.1029/2023GL103069
 
-links:
-  - type: doi
-    url: https://doi.org/10.1029/2023GL103069
-
 projects: []
 slides: ""
 ---
 
-Abstract/notes.

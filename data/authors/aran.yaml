@@ -1,8 +1,8 @@
 schema: hugoblox/author/v1
 slug: aran
 name:
-  display: "Aran"
-  given: ""
+  display: "A. Aran"
+  given: "A."
   family: "Aran"
 role: ""
 links: []

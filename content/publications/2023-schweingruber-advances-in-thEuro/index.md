@@ -44,4 +44,3 @@ projects: []
 slides: ""
 ---
 
-Abstract/notes.

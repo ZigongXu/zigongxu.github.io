@@ -27,13 +27,7 @@ hugoblox:
   ids:
     doi: 10.1093/mnrasl/sly117
 
-links:
-  - type: doi
-    url: https://doi.org/10.1093/mnrasl/sly117
-
 projects: []
 slides: ""
 ---
-
-Short description.
 

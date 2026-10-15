@@ -19,7 +19,7 @@ authors:
 - yuan
 - lohf
 - guo
-- xu
+- me
 - freiherr-von-forstner
 - kulkarni
 - haitao-xu
@@ -56,14 +56,7 @@ hugoblox:
   ids:
     doi: 10.1126/sciadv.aaz1334
 
-links:
-  - type: doi
-    url: https://doi.org/10.1126/sciadv.aaz1334
-
 projects: []
 slides: ""
 ---
-
-Short description.
-
 

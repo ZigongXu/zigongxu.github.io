@@ -1,8 +1,8 @@
 schema: hugoblox/author/v1
 slug: allen
 name:
-  display: "Allen"
-  given: ""
+  display: "R. C. Allen"
+  given: "R. C."
   family: "Allen"
 role: ""
 links: []

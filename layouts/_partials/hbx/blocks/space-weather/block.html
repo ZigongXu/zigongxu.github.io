@@ -1,0 +1,144 @@
+{{/* Custom block: live space-weather panel using public NOAA SWPC JSON feeds (fetched in the visitor's browser).
+     Shows current NOAA R/S/G scales, latest Kp, and GOES integral proton flux for the past 3 days. */}}
+{{ $page := .wcPage }}
+{{ $block := .wcBlock }}
+{{ $id := printf "swx-%d" now.UnixNano }}
+<div class="max-w-5xl mx-auto px-6" id="{{ $id }}">
+  {{ with $block.content.title }}<h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-2">{{ . | emojify }}</h2>{{ end }}
+  {{ with $block.content.text }}<p class="text-center text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">{{ . | $page.RenderString }}</p>{{ end }}
+
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+    <div class="rounded-xl p-4 bg-white/70 dark:bg-gray-800/70 border border-gray-200 dark:border-gray-700 text-center">
+      <div class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">Radiation storm</div>
+      <div class="text-3xl font-bold mt-1 text-gray-900 dark:text-white" data-swx="S">–</div>
+      <div class="text-xs text-gray-500 dark:text-gray-400" data-swx="Stxt">NOAA S-scale</div>
+    </div>
+    <div class="rounded-xl p-4 bg-white/70 dark:bg-gray-800/70 border border-gray-200 dark:border-gray-700 text-center">
+      <div class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">Radio blackout</div>
+      <div class="text-3xl font-bold mt-1 text-gray-900 dark:text-white" data-swx="R">–</div>
+      <div class="text-xs text-gray-500 dark:text-gray-400" data-swx="Rtxt">NOAA R-scale</div>
+    </div>
+    <div class="rounded-xl p-4 bg-white/70 dark:bg-gray-800/70 border border-gray-200 dark:border-gray-700 text-center">
+      <div class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">Geomagnetic storm</div>
+      <div class="text-3xl font-bold mt-1 text-gray-900 dark:text-white" data-swx="G">–</div>
+      <div class="text-xs text-gray-500 dark:text-gray-400" data-swx="Gtxt">NOAA G-scale</div>
+    </div>
+    <div class="rounded-xl p-4 bg-white/70 dark:bg-gray-800/70 border border-gray-200 dark:border-gray-700 text-center">
+      <div class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">Planetary Kp</div>
+      <div class="text-3xl font-bold mt-1 text-gray-900 dark:text-white" data-swx="Kp">–</div>
+      <div class="text-xs text-gray-500 dark:text-gray-400" data-swx="Kptxt">latest 3-hour value</div>
+    </div>
+  </div>
+
+  <div class="rounded-xl p-4 bg-white/70 dark:bg-gray-800/70 border border-gray-200 dark:border-gray-700">
+    <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+      <div class="font-semibold text-gray-900 dark:text-white">GOES integral proton flux — last 3 days</div>
+      <div class="flex gap-1 text-xs" data-swx="btns"></div>
+    </div>
+    <div data-swx="chart" class="w-full text-gray-700 dark:text-gray-300" style="min-height:240px">
+      <p class="text-sm text-gray-500 py-20 text-center" data-swx="status">Loading live data from NOAA SWPC…</p>
+    </div>
+    <div class="text-xs text-gray-500 dark:text-gray-400 mt-2">
+      Flux in pfu (particles cm⁻² s⁻¹ sr⁻¹). Dashed line: 10 pfu at ≥10 MeV = S1 radiation-storm threshold.
+      Data: <a class="underline" href="https://www.swpc.noaa.gov/" target="_blank" rel="noopener">NOAA Space Weather Prediction Center</a>. <span data-swx="updated"></span>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var root = document.getElementById("{{ $id }}");
+  if (!root) return;
+  var $ = function (k) { return root.querySelector('[data-swx="' + k + '"]'); };
+  var BASE = "https://services.swpc.noaa.gov";
+  var colors = { ">=10 MeV": "#e8590c", ">=100 MeV": "#7048e8", ">=1 MeV": "#1c7ed6", ">=50 MeV": "#2f9e44" };
+  var shown = { ">=1 MeV": false, ">=10 MeV": true, ">=50 MeV": false, ">=100 MeV": true };
+  var series = {};
+
+  function fail(msg) {
+    var s = $("status");
+    if (s) s.innerHTML = msg + ' <a class="underline" target="_blank" rel="noopener" href="https://www.swpc.noaa.gov/products/goes-proton-flux">View on NOAA SWPC →</a>';
+  }
+
+  // NOAA scales
+  fetch(BASE + "/products/noaa-scales.json").then(function (r) { return r.json(); }).then(function (d) {
+    var now = d["0"] || d[0];
+    ["R", "S", "G"].forEach(function (k) {
+      var v = now[k] || {};
+      $(k).textContent = k + (v.Scale == null ? "?" : v.Scale);
+      $(k + "txt").textContent = v.Text && v.Text !== "none" ? v.Text : "none — quiet";
+      if (+v.Scale > 0) $(k).style.color = "#e03131";
+    });
+  }).catch(function () {});
+
+  // Kp (handles both object and legacy array formats)
+  fetch(BASE + "/products/noaa-planetary-k-index.json").then(function (r) { return r.json(); }).then(function (d) {
+    var last = d[d.length - 1];
+    var kp = Array.isArray(last) ? parseFloat(last[1]) : parseFloat(last.Kp);
+    var t = Array.isArray(last) ? last[0] : last.time_tag;
+    $("Kp").textContent = kp.toFixed(1);
+    if (kp >= 5) $("Kp").style.color = "#e03131";
+    $("Kptxt").textContent = (kp >= 5 ? "storm level · " : "") + String(t).replace("T", " ").slice(0, 16) + " UT";
+  }).catch(function () {});
+
+  function draw() {
+    var el = $("chart");
+    var W = el.clientWidth || 600, H = 240, L = 46, R = 10, T = 10, B = 26;
+    var keys = Object.keys(shown).filter(function (k) { return shown[k] && series[k]; });
+    var t0 = Infinity, t1 = -Infinity;
+    keys.forEach(function (k) { series[k].forEach(function (p) { if (p[0] < t0) t0 = p[0]; if (p[0] > t1) t1 = p[0]; }); });
+    if (!isFinite(t0)) { el.innerHTML = ""; return; }
+    var lo = -2, hi = 4; // log10 pfu range 0.01 .. 10^4
+    keys.forEach(function (k) { series[k].forEach(function (p) { var l = Math.log10(p[1]); if (l > hi) hi = Math.ceil(l); }); });
+    var x = function (t) { return L + (t - t0) / (t1 - t0) * (W - L - R); };
+    var y = function (v) { var l = Math.max(lo, Math.min(hi, Math.log10(Math.max(v, 1e-3)))); return T + (hi - l) / (hi - lo) * (H - T - B); };
+    var s = '<svg width="100%" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" style="display:block;overflow:visible" font-size="11" fill="currentColor">';
+    for (var e = lo; e <= hi; e++) {
+      s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y(Math.pow(10, e)) + '" y2="' + y(Math.pow(10, e)) + '" stroke="currentColor" stroke-opacity="0.12"/>';
+      s += '<text x="' + (L - 6) + '" y="' + (y(Math.pow(10, e)) + 4) + '" text-anchor="end" opacity="0.7">10<tspan dy="-5" font-size="8">' + e + '</tspan></text>';
+    }
+    var day = 864e5, d0 = Math.ceil(t0 / day) * day;
+    for (var d = d0; d <= t1; d += day) {
+      var dt = new Date(d);
+      s += '<line x1="' + x(d) + '" x2="' + x(d) + '" y1="' + T + '" y2="' + (H - B) + '" stroke="currentColor" stroke-opacity="0.12"/>';
+      s += '<text x="' + x(d) + '" y="' + (H - 8) + '" text-anchor="middle" opacity="0.7">' + dt.toISOString().slice(5, 10) + '</text>';
+    }
+    s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y(10) + '" y2="' + y(10) + '" stroke="#e03131" stroke-dasharray="5 4" stroke-opacity="0.8"/>';
+    s += '<text x="' + (W - R) + '" y="' + (y(10) - 4) + '" text-anchor="end" fill="#e03131" font-size="10">S1</text>';
+    keys.forEach(function (k) {
+      var pts = series[k].map(function (p) { return x(p[0]).toFixed(1) + "," + y(p[1]).toFixed(1); }).join(" ");
+      s += '<polyline fill="none" stroke="' + colors[k] + '" stroke-width="1.6" points="' + pts + '"/>';
+    });
+    s += "</svg>";
+    el.innerHTML = s;
+  }
+
+  function buttons() {
+    var b = $("btns"); b.innerHTML = "";
+    Object.keys(shown).forEach(function (k) {
+      if (!series[k]) return;
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.textContent = "≥" + k.replace(">=", "");
+      btn.setAttribute("aria-pressed", shown[k]);
+      btn.style.cssText = "padding:2px 8px;border-radius:999px;border:1.5px solid " + colors[k] + ";color:" + (shown[k] ? "#fff" : colors[k]) + ";background:" + (shown[k] ? colors[k] : "transparent");
+      btn.onclick = function () { shown[k] = !shown[k]; buttons(); draw(); };
+      b.appendChild(btn);
+    });
+  }
+
+  fetch(BASE + "/json/goes/primary/integral-protons-3-day.json").then(function (r) {
+    if (!r.ok) throw 0; return r.json();
+  }).then(function (d) {
+    d.forEach(function (rec) {
+      if (!(rec.energy in shown) || !(rec.flux > 0)) return;
+      (series[rec.energy] = series[rec.energy] || []).push([Date.parse(rec.time_tag), rec.flux]);
+    });
+    if (!Object.keys(series).length) return fail("No proton data available right now.");
+    var last = d[d.length - 1];
+    $("updated").textContent = "Latest: " + last.time_tag.replace("T", " ").slice(0, 16) + " UT, GOES-" + last.satellite + ".";
+    buttons(); draw();
+    var to; window.addEventListener("resize", function () { clearTimeout(to); to = setTimeout(draw, 150); });
+  }).catch(function () { fail("Live data could not be loaded."); });
+})();
+</script>

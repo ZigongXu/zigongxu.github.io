@@ -26,15 +26,7 @@ hugoblox:
   ids:
     doi: 10.1093/mnras/staa688
 
-links:
-  - type: doi
-    url: https://doi.org/10.1093/mnras/staa688
-
 projects: []
 slides: ""
 ---
 
-Short description.
-
-'''''
-'''''

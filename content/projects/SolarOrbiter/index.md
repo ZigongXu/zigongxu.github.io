@@ -1,74 +1,31 @@
 ---
-title: Solar Orbiter- The Energetic Particle Detector (EPD)- High Energy Telescope (HET)
-#draft: true
-date: 2026-02-17
+title: "Solar Orbiter / EPD-HET — Cosmic Rays from 0.3 to 1 au"
+summary: "Team member (2020–2023) of the High Energy Telescope in Solar Orbiter's Energetic Particle Detector: radial gradients of anomalous and galactic cosmic rays and multi-spacecraft SEP events."
+date: 2026-04-01
+weight: 2
 links:
   - type: custom
     label: EPD data browser
     url: https://espada.uah.es/epd/
 tags:
   - Solar Orbiter
-  - ESA
-  - Zigong Xu
+  - EPD
+  - HET
+  - Cosmic rays
+image:
+  caption: "Cut-away of the High Energy Telescope: silicon detectors A1/A2, B1/B2 and the BGO calorimeter C."
 ---
 
-See more details [here](https://espada.uah.es/epd/)
+ESA/NASA's **Solar Orbiter** carries the **Energetic Particle Detector (EPD)**. Kiel University built its **High Energy Telescope (HET)**, which measures protons and heavier ions up to hundreds of MeV/nucleon with silicon detectors and a BGO scintillator.
 
-<!--more-->
+## My role
+Member of the EPD/HET team at Kiel (2020–2023): HET data analysis and cross-calibration with other instruments, and studies of large, widespread SEP events — work I continue in collaboration from Caltech.
 
-## Featured Plots
+## Key results
+- **Anomalous cosmic-ray helium in the inner heliosphere** — first radial gradient of ACR helium between 0.3 and 1 au, ≈22%/au (≈32%/au with the GCR contribution removed), increasing with solar modulation (first author, [A&A 2026](https://doi.org/10.1051/0004-6361/202558218)).
+- Co-author of Solar Orbiter's *First Results* special issue papers (A&A 656, 2021) and many multi-spacecraft SEP studies, including ³He-rich events and widespread events.
 
-### Option 1: Side-by-Side Layout
-
-<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 2rem 0;">
-  <figure style="margin: 0;">
-    <img src="featured.png" alt="Plot 1" style="width: 100%; height: auto; border-radius: 0.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-    <figcaption style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem; color: #6c757d;">Plot 1 Caption</figcaption>
-  </figure>
-  <figure style="margin: 0;">
-    <iframe src="featured.pdf" width="100%" height="400px" style="border: none; border-radius: 0.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-      <p>Your browser does not support PDFs. <a href="featured.pdf">Download the PDF</a> instead.</p>
-    </iframe>
-    <figcaption style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem; color: #6c757d;">PDF Document</figcaption>
-  </figure>
-</div>
-
-### Option 2: Simple Image Grid (for multiple PNG/JPG files)
-
-<!-- Uncomment and add more images as needed -->
-<!--
-<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0;">
-  ![Plot 1](featured.png)
-  ![Plot 2](plot2.png)
-  ![Plot 3](plot3.png)
-</div>
--->
-
-### Option 3: Vertical Stack
-
-<!--
-![Plot 1](featured.png)
-*Caption for Plot 1*
-
-![Plot 2](plot2.png)
-*Caption for Plot 2*
-
-![Plot 3](plot3.png)
-*Caption for Plot 3*
--->
-
-### Option 4: Using Hugo Figure Shortcode
-
-<!--
-{{< figure src="featured.png" title="Plot 1 Title" >}}
-{{< figure src="plot2.png" title="Plot 2 Title" >}}
-{{< figure src="plot3.png" title="Plot 3 Title" >}}
--->
-<!--
-## Project Pages
-
-
-- [Overview](overview/) - Project overview and details
-- [Results](results/) - Experimental results
-- [Publications](publications/) - Related publications
--->
+<figure>
+  <img src="featured.png" alt="Cut-away view of the Solar Orbiter High Energy Telescope" style="width:100%;max-width:720px;border-radius:0.5rem">
+  <figcaption>The High Energy Telescope (HET) on Solar Orbiter/EPD.</figcaption>
+</figure>

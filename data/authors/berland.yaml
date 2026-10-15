@@ -1,8 +1,8 @@
 schema: hugoblox/author/v1
 slug: berland
 name:
-  display: "Berland"
-  given: ""
+  display: "G. D. Berland"
+  given: "G. D."
   family: "Berland"
 role: ""
 links: []

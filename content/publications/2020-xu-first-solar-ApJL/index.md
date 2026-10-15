@@ -31,13 +31,6 @@ hugoblox:
   ids:
     doi: 10.3847/2041-8213/abbccc
     arxiv: 2008.03492
-links:
-  - type: preprint
-    provider: arxiv
-    id: 2008.03492
-  - type: doi
-    url: https://doi.org/10.3847/2041-8213/abbccc
-
 image:
   caption: ''
   focal_point: ''
@@ -47,8 +40,3 @@ projects: []
 slides: ""
 ---
 
-Short description and notes about the paper.
-
-``` 
-Add any abstract or excerpt here.
-```

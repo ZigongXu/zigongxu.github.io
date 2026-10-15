@@ -23,13 +23,7 @@ hugoblox:
   ids:
     doi: 10.3847/1538-4357/aa6ba2
 
-links:
-  - type: doi
-    url: https://doi.org/10.3847/1538-4357/aa6ba2
-
 projects: []
 slides: ""
 ---
-
-Short description.
 

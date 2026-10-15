@@ -13,7 +13,7 @@ authors:
 - mccomas
 - mcnutt
 - mewaldt
-- DGmitchell
+- dgmitchell
 - mitchell-jg
 - muro
 - rankin
@@ -50,12 +50,7 @@ hugoblox:
   ids:
     doi: 10.3847/1538-4357/ad37f8
 
-links:
-  - type: doi
-    url: https://doi.org/10.3847/1538-4357/ad37f8
-
 projects: []
 slides: ""
 ---
 
-Abstract/notes.

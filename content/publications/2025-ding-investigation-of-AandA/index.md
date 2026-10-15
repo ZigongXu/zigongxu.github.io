@@ -1,4 +1,3 @@
-````markdown
 ---
 title: "Investigation of the inverse velocity dispersion in a solar energetic particle event observed by Solar Orbiter"
 authors:
@@ -39,14 +38,7 @@ hugoblox:
   ids:
     doi: 10.1051/0004-6361/202553806
 
-links:
-  - type: doi
-    url: https://doi.org/10.1051/0004-6361/202553806
-
 projects: []
 slides: ""
 ---
 
-Short description.
-
-````

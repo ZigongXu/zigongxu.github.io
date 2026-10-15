@@ -1,0 +1,18 @@
+{{/* Custom block: vertical career timeline from content.items (date, title, text, emoji, url). */}}
+{{ $page := .wcPage }}
+{{ $block := .wcBlock }}
+<div class="max-w-3xl mx-auto px-6">
+  {{ with $block.content.title }}<h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-10">{{ . | emojify }}</h2>{{ end }}
+  <ol class="relative border-l-2 border-primary-300 dark:border-primary-700 ml-4">
+    {{ range $block.content.items }}
+    <li class="mb-8 ml-8">
+      <span class="absolute -left-[17px] flex items-center justify-center w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900 ring-4 ring-white dark:ring-gray-900 text-base">{{ .emoji | default "•" }}</span>
+      <time class="block text-sm font-semibold uppercase tracking-wide text-primary-700 dark:text-primary-300">{{ .date }}</time>
+      <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-1">
+        {{ if .url }}<a href="{{ .url | relURL }}" class="hover:underline">{{ .title }}</a>{{ else }}{{ .title }}{{ end }}
+      </h3>
+      {{ with .text }}<p class="text-gray-600 dark:text-gray-400 mt-1">{{ . | $page.RenderString }}</p>{{ end }}
+    </li>
+    {{ end }}
+  </ol>
+</div>

@@ -3,19 +3,18 @@ slug: me
 is_owner: true
 name:
   display: Zigong Xu
-  given: Zigong 
+  given: Zigong
   family: Xu
-  alternate: '徐子贡'  # Example: 王伟
-  pronunciation: 'Xu Zigong'  # Example: Wáng Wěi
+  alternate: '徐子贡'
+  pronunciation: 'Xu Zigong'
   pronouns: he/him
 postnominals:
   - PhD
 status:
-  icon: "☕️"
-role: Postdoctoral Researcher
+  icon: "☀️"
+role: Postdoctoral Scholar Research Associate in Physics
 bio: |
-  Zigong Xu is a postdoctoral researcher specializing in space weather and high-energy astrophysics. His work focuses on solar energetic particles, radiation environments in the heliosphere and at the lunar surface, and the interaction between energetic particles and space plasma. He combines observational data from space missions with statistical modeling and machine learning techniques to address fundamental problems in space physics and radiation risk assessment. The personal website is still developing. Please looking forward to the progress.
-
+  I study how the Sun accelerates particles to high energies and what those particles — together with galactic and anomalous cosmic rays — do to the radiation environment of the inner heliosphere and the Moon. I work hands-on with instrument data from NASA's Parker Solar Probe (IS⊙IS/EPI-Hi) and IMAP (HIT), ESA's Solar Orbiter (EPD/HET), and China's Chang'E-4 lander (LND), combining multi-spacecraft observations, Geant4 simulation, statistics and machine learning to understand solar energetic particle events and assess radiation risk for space exploration.
 
 affiliations:
   - name: California Institute of Technology
@@ -35,93 +34,105 @@ links:
     url: https://scholar.google.com/citations?user=o1RDduwAAAAJ&hl=en
   - icon: academicons/orcid
     url: https://orcid.org/0000-0002-9246-996X
+  - icon: academicons/ads
+    url: https://ui.adsabs.harvard.edu/public-libraries/c6ahuEHzQ82MrHBbTvhEYw
+    label: NASA ADS publication list
 
 interests:
-  - Space Weather
   - Solar Energetic Particles
-  - High-Energy Astrophysics
-  - Radiation Risk Assessment
+  - Cosmic Rays in the Heliosphere
+  - Lunar Radiation Environment
+  - Space Weather & Radiation Risk
+  - Machine Learning for Space Physics
 
 education:
-  - degree: Ph.D. in Natural Sciences (Doctorate in Natural Sciences (Dr. rer. nat.)
-    institution: Kiel University
-    title: Energetic particles in the heliosphere; *gut* (cum laude)
+  - degree: Ph.D. in Space Physics (Dr. rer. nat.)
+    institution: Kiel University, Germany
+    title: Energetic particles in the heliosphere — *gut* (cum laude)
     start: 2018-09-01
-    end: 2023-07-30
+    end: 2023-08-01
     summary: |
-      Member of Lunar Lander Neutron and Dosimetry Experiments (LND) onboard the Chang'E-4 Mission.
-      Member of Solar Orbiter/High energy telescope (HET);
-      Observations; solar energetic particles and anomalous cosmic rays; instrumental calibration and data analysis; particle radiation risk assessment; particle detection in space and planetary surface (Moon and Mars)
+      Advisor: Prof. Robert F. Wimmer-Schweingruber. Project manager of the Lunar Lander Neutron and Dosimetry experiment (LND) on Chang'E-4 and member of the Solar Orbiter EPD/HET team.
     button:
       text: Download dissertation
       url: https://macau.uni-kiel.de/servlets/MCRFileNodeServlet/macau_derivate_00005466/ZigongXU-Thesis_submit_Final_V2_AfterCorrection.pdf
       icon: hero/arrow-down-tray
-  - degree: MS in Astrophysics
-    institution: Nanjing University
+  - degree: M.S. in Astrophysics
+    institution: Nanjing University, China
     start: 2015-09-01
     end: 2018-06-30
-  - degree: BS in Space Science and Technology
-    institution: Nanjing University@School of Astronomy and Space Science
+    summary: |
+      Advisors: Prof. Chuan Li and Prof. Mingde Ding. National Scholarship for Graduate Students (2017).
+  - degree: B.S. in Space Science and Technology
+    institution: School of Astronomy and Space Science, Nanjing University, China
     start: 2011-09-01
     end: 2015-06-30
+    summary: |
+      Outstanding Graduate Award (2015).
 
 experience:
-   - role: Postdoc
-     org: Caltech
-     start: 2023-09-01
-     summary: | 
-        **Team Member of Parker Solar Probe/IS$\odot$IS and IMAP/HIT instrument teams**  \
-        Research interests: Solar Energetic Particles(SEP) events and space weather research.  \
-        My studies focus on the observation of SEPs and cosmic rays using state-of-the-art space instruments, evaluation of the radiation hazard of energetic particle events in the Cis-Lunar region, and machine learning applications in space physics and space weather.
-     button:
-        text: View portfolio
-        url: 'https://zigongxu.people.caltech.edu/'
-        icon: hero/arrow-down-tray
-   - role: Research Assistant/Project manager
-     org: Kiel University
-     start: 2018-09-01
-     end: 2023-07-30
-     summary: |
-        Primary responsible scientist for Lunar Lander Neutron and Dosimetry Experiments on board Chang'E-4: instrument operations and data analysis; reported the first SEP event detected by LND; derived the first lunar-surface albedo proton spectra. \
-        Studied solar energetic particles and anomalous cosmic rays using Solar Orbiter/High energy telescope (HET) observations. [LND Project](https://www.physik.uni-kiel.de/en/institutes/departments/extraterrestrial-physics/research/lunar-lander-neutrons-dosimetry-on-change-4) ; [Solar Orbiter HET]()
-     button:
-        text: LND related
-        icon: hero/arrow-right-circle
-        url: https://www.physik.uni-kiel.de/en/institutes/departments/extraterrestrial-physics/research/lunar-lander-neutrons-dosimetry-on-change-4
-        style: primary  
+  - role: Postdoctoral Scholar Research Associate in Physics
+    org: California Institute of Technology, Pasadena, CA
+    start: 2023-09-01
+    summary: |
+      Advisor: Dr. Christina M. S. Cohen.  \
+      **Parker Solar Probe — IS⊙IS/EPI-Hi team member** (2023–present) and **IMAP — HIT team member** (2025–present).  \
+      Multi-spacecraft studies of solar energetic particle (SEP) events with PSP, Solar Orbiter, STEREO and ACE: composition variations, inverse-velocity-arrival (IVA) events, and radial dependence of SEPs; anomalous and galactic cosmic rays in the inner heliosphere; radiation hazards in cis-lunar space; machine learning for SEP prediction.
+    button:
+      text: Caltech page
+      url: 'https://zigongxu.people.caltech.edu/'
+      icon: hero/arrow-top-right-on-square
+  - role: Research Associate & Project Manager — Chang'E-4/LND
+    org: Kiel University, Germany
+    start: 2018-09-01
+    end: 2023-08-01
+    summary: |
+      Principal scientist for operations and data analysis of the Lunar Lander Neutron and Dosimetry experiment (project manager 2019–2023).  \
+      Reported the first solar energetic particle event observed on the lunar far side; derived the first primary (GCR) and albedo proton spectra on the lunar surface during the solar minimum between cycles 24 and 25; calibrated LND data products with Geant4 simulations.
+    button:
+      text: LND at Kiel
+      icon: hero/arrow-right-circle
+      url: https://www.physik.uni-kiel.de/en/institutes/departments/extraterrestrial-physics/research/lunar-lander-neutrons-dosimetry-on-change-4
+  - role: Research Associate — Solar Orbiter EPD/HET
+    org: Kiel University, Germany
+    start: 2020-09-01
+    end: 2023-09-01
+    summary: |
+      Analysed Energetic Particle Detector data for large and widespread SEP events; measured the radial gradients of anomalous and galactic cosmic rays from 0.3 to 1 au with the High Energy Telescope; cross-calibrated HET with other instruments.
+  - role: Research Assistant
+    org: Nanjing University, China
+    start: 2015-09-01
+    end: 2018-06-30
+    summary: |
+      Coronal shock waves and SEP production using remote-sensing (SDO, STEREO, SOHO, RHESSI, GOES) and in-situ particle data (GOES, ACE, WIND). PI of a Jiangsu Province Postgraduate Research & Practice Innovation project (KYCX17_0023) on SEP sources and acceleration.
 
-
-  #- role: Senior AI Research Scientist
-  #  org: Meta AI
-  #  start: 2020-01-01
-  #  summary: |
-  #    Leading research on multimodal AI systems. Contributed to Llama 2 and other open-source models.
-  #  button:
-  #    text: View portfolio
-  #    url: /
-  #    icon: hero/arrow-down-tray
-  #- role: AI Research Intern
-  #  org: OpenAI
-  #  start: 2019-06-01
-  #  end: 2019-12-31
-  #  summary: |
-  #    Worked on GPT-3 scaling. Co-authored paper on prompt engineering.
-#
 skills:
-  - name: Technical Skills
+  - name: Data & Computing
     items:
-      - label: Python
+      - label: Python (scientific stack)
         level: 5
-      - label: Machine Learning
-        level: 5
-  - name: Research & Communication
-    items:
-      - label: Academic Writing
-        level: 5
-      - label: Conference Presentations
+      - label: Machine learning
         level: 4
-      #- label: Grant Proposals
-      #  level: 4
+      - label: Geant4 simulation
+        level: 4
+      - label: IDL
+        level: 4
+  - name: Science & Communication
+    items:
+      - label: Space instrument data analysis & calibration
+        level: 5
+      - label: Academic writing & peer review
+        level: 5
+      - label: Conference presentations
+        level: 5
+  - name: Outside the lab
+    items:
+      - label: Volleyball (licensed referee)
+        level: 4
+      - label: Diving
+        level: 3
+      - label: Ice skating
+        level: 3
 
 languages:
   - name: Mandarin
@@ -130,18 +141,21 @@ languages:
   - name: English
     level: 3
     label: Professional
-  #- name: Spanish
-  #  level: 4
-  #  label: Fluent
 
 awards:
-  - title: National Aeronautics and Space Administration Group Achievement Award of Parker Solar Probe Team
+  - title: NASA Group Achievement Award — Parker Solar Probe Team
     awarder: National Aeronautics and Space Administration
-    date: ""
     summary: ""
     icon: hero/trophy
-  #- title: China National National scholarship for graduate students
-  #  awarder: Ministry of Education of China
-  #  date: 2017-10-01
-  #  summary: 
-  #  icon: hero/trophy
+  - title: National Scholarship for Graduate Students
+    awarder: Ministry of Education of China
+    date: 2017-10-01
+    icon: hero/academic-cap
+  - title: Excellent Student Cadre
+    awarder: Nanjing University
+    date: 2016-10-01
+    icon: hero/star
+  - title: Outstanding Graduate Award
+    awarder: Nanjing University
+    date: 2015-06-01
+    icon: hero/star

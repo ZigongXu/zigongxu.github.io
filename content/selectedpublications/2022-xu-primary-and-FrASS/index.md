@@ -30,16 +30,6 @@ hugoblox:
     doi: 10.3389/fspas.2022.974946
     arxiv: 2209.05831
 
-links:
-  - type: preprint
-    provider: arxiv
-    id: 2209.05831
-  - type: doi
-    url: https://doi.org/10.3389/fspas.2022.974946
-  - type: custom
-    label: ADS
-    url: https://ui.adsabs.harvard.edu/abs/2022FrASS...9.4946X
-
 image:
   caption: ''
   focal_point: ''
@@ -47,6 +37,9 @@ image:
 
 projects: []
 slides: ""
+links:
+  - type: custom
+    label: ADS
+    url: https://ui.adsabs.harvard.edu/abs/2022FrASS...9.4946X
 ---
 
-This page was generated on request. Edit authors, DOI, PDF link, and summary as needed. To attach a PDF or a featured image, place the file(s) in this folder and update the `links` or `image` front matter fields.

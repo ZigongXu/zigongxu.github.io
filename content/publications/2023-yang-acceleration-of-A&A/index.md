@@ -12,7 +12,7 @@ authors:
 - kollhoff
 - pacheco
 - kuhl
-- xu
+- me
 - keilbach
 - rodriguez-pacheco
 - ho
@@ -35,16 +35,7 @@ hugoblox:
   ids:
     doi: 10.1051/0004-6361/202245681
 
-links:
-  - type: doi
-    url: https://doi.org/10.1051/0004-6361/202245681
-
 projects: []
 slides: ""
 ---
 
-Abstract/notes.
-
-```
-
-````

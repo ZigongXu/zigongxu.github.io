@@ -13,7 +13,7 @@ authors:
 - leske
 - mccomas
 - mcnutt
-- DGmitchell
+- dgmitchell
 - mitchell-jg
 - muro
 - rankin
@@ -42,12 +42,7 @@ hugoblox:
   ids:
     doi: 10.3847/2041-8213/ada24b
 
-links:
-  - type: doi
-    url: https://doi.org/10.3847/2041-8213/ada24b
-
 projects: []
 slides: ""
 ---
 
-Abstract/notes.

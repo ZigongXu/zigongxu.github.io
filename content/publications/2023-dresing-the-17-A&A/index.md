@@ -70,15 +70,7 @@ hugoblox:
     doi: 10.1051/0004-6361/202345938
     arxiv: 2303.10969
 
-links:
-  - type: preprint
-    provider: arxiv
-    id: 2303.10969
-  - type: doi
-    url: https://doi.org/10.1051/0004-6361/202345938
-
 projects: []
 slides: ""
 ---
 
-Abstract/notes.

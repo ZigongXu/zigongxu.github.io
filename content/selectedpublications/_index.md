@@ -22,8 +22,8 @@ sections:
       columns: 3
   - block: collection
     content:
-      title: Recent/Selected Publications
-      text: 'Full list of Paper <a href=" https://ui.adsabs.harvard.edu/public-libraries/c6ahuEHzQ82MrHBbTvhEYw" style="color: blue; text-decoration: underline;">ADS</a>  <a href="https://scixplorer.org/public-libraries/c6ahuEHzQ82MrHBbTvhEYw" style="color: blue; text-decoration: underline;">SciX</a>'
+      title: First-Author Publications
+      text: 'All papers: [publication list](/publications/) · [NASA ADS](https://ui.adsabs.harvard.edu/public-libraries/c6ahuEHzQ82MrHBbTvhEYw) · [Google Scholar](https://scholar.google.com/citations?user=o1RDduwAAAAJ&hl=en)'
       filters:
         folders:
           - selectedpublications

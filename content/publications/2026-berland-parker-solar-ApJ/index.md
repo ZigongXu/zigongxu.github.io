@@ -4,7 +4,7 @@ authors:
 - berland
 - hill
 - kouloumvakos
-- DGmitchell
+- dgmitchell
 - mcnutt
 - roelof
 - cohencms
@@ -15,7 +15,7 @@ authors:
 - khoo
 - cuesta
 - muro
-- xu
+- me
 - pak
 - farooki
 - stevens
@@ -39,12 +39,7 @@ hugoblox:
   ids:
     doi: 10.3847/1538-4357/ae1b97
 
-links:
-  - type: doi
-    url: https://doi.org/10.3847/1538-4357/ae1b97
-
 projects: []
 slides: ""
 ---
 
-Short description.

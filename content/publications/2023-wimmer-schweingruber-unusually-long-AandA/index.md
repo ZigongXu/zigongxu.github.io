@@ -1,4 +1,3 @@
-````markdown
 ---
 title: "Unusually long path length for a nearly scatter-free solar particle event observed by Solar Orbiter at 0.43 au"
 authors:
@@ -33,7 +32,7 @@ authors:
 - bottcher
 - eldrum
 - fleth
-- xu
+- me
 
 date: "2023-10-01T00:00:00Z"
 publishDate: "2023-10-01T00:00:00Z"
@@ -53,14 +52,7 @@ hugoblox:
   ids:
     doi: 10.1051/0004-6361/202346319
 
-links:
-  - type: doi
-    url: https://doi.org/10.1051/0004-6361/202346319
-
 projects: []
 slides: ""
 ---
 
-Short description.
-
-````

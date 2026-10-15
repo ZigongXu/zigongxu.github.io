@@ -1,26 +1,30 @@
 ---
-title: 'Projects'
+title: 'Research'
 date: 2024-05-19
 type: landing
 
 design:
-  # Section spacing
-  spacing: '10rem'
+  spacing: '5rem'
 
-# Page sections
 sections:
+  - block: markdown
+    content:
+      title: 🛰️ Missions I work on
+      text: |-
+        My research is built on data from four space missions, from inside Mercury's orbit to the far side of the Moon. Each page below describes the instrument, my role on the team, and the main results.
   - block: collection
     content:
-      title: Selected Projects
-      text: I enjoy making things. Here are a selection of projects that I have worked on over the years; The site is in developing and looking forward to more content.
+      title: ''
       filters:
         folders:
           - projects
+      sort_by: Weight
+      sort_ascending: true
     design:
       view: article-grid
       fill_image: false
-      columns: 1
+      columns: 2
       show_date: false
       show_read_time: false
-      show_read_more: false
+      show_read_more: true
 ---

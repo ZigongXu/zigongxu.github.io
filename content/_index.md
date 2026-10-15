@@ -5,16 +5,13 @@ date: 2022-10-24
 type: landing
 
 design:
-  # Default section spacing
-  spacing: '6rem'
+  spacing: '5rem'
 
 sections:
   - block: resume-biography-3
     content:
-      # Choose a user profile to display (a folder name within `content/authors/`)
       username: me
       text: ''
-      # Show a call-to-action button under your biography? (optional)
       button:
         text: Download CV
         url: uploads/CV__20251228.pdf
@@ -23,29 +20,116 @@ sections:
         education: ''
         interests: ''
     design:
-      # Use the new Gradient Mesh which automatically adapts to the selected theme colors
       background:
         gradient_mesh:
           enable: true
-
-      # Name heading sizing to accommodate long or short names
       name:
-        size: md # Options: xs, sm, md, lg (default), xl
-
-      # Avatar customization
+        size: md
       avatar:
-        size: medium # Options: small (150px), medium (200px, default), large (320px), xl (400px), xxl (500px)
-        shape: circle # Options: circle (default), square, rounded
-  - block: markdown
-    content:
-      title: '📚 My Research'
-      subtitle: ''
-      text: |-
-        Hi, I’m Zigong Xu — a postdoctoral researcher studying space weather, energetic particles, and radiation environments in space. I work with data from space missions and develop analysis tools using Python and machine learning. I’m interested in both fundamental science and practical, data-driven solutions.
+        size: medium
+        shape: circle
 
-        Please reach out to collaborate 😃
+  - block: stats
+    content:
+      items:
+        - statistic: "40+"
+          description: Peer-reviewed papers
+          sub_metric: ApJ, A&A, Science Advances, GRL
+          icon: hero/document-text
+        - statistic: "7"
+          description: First / co-first author papers
+          sub_metric: 3 published in 2026
+          icon: hero/pencil-square
+        - statistic: "4"
+          description: Space missions
+          sub_metric: PSP · Solar Orbiter · IMAP · Chang'E-4
+          icon: hero/rocket-launch
+        - statistic: "13"
+          description: Conference talks & posters
+          sub_metric: incl. invited talk at AGU 2025
+          icon: hero/presentation-chart-bar
     design:
-      columns: '1'
+      layout: cards
+
+  - block: research-areas
+    id: research
+    content:
+      title: Research Areas
+      text: From the Sun's corona to the surface of the Moon — following energetic particles through the heliosphere.
+      items:
+        - name: Solar Energetic Particles
+          description: How CME-driven shocks and flares accelerate particles, seen by spacecraft at different distances from the Sun.
+          emoji: ☀️
+          gradient: from-orange-400 to-red-500
+          status: active
+          topics: [Inverse velocity arrival, Heavy-ion composition, Multi-spacecraft events]
+          cta:
+            text: Parker Solar Probe work
+            url: projects/parkersolarprobe/
+        - name: Cosmic Rays in the Heliosphere
+          description: Radial gradients and modulation of anomalous and galactic cosmic rays between 0.3 and 1 au.
+          emoji: 🌌
+          gradient: from-indigo-400 to-purple-600
+          status: active
+          topics: [Anomalous cosmic rays, Galactic cosmic rays, Solar modulation]
+          cta:
+            text: Solar Orbiter work
+            url: projects/solarorbiter/
+        - name: Lunar Radiation Environment
+          description: Primary and albedo particles, SEPs and cosmic-ray shadowing measured on the Moon's far side.
+          emoji: 🌕
+          gradient: from-slate-400 to-gray-600
+          status: active
+          topics: [Chang'E-4 LND, Albedo protons, Earth-Moon cosmic-ray cavity]
+          cta:
+            text: LND work
+            url: projects/lnd/
+        - name: Space Weather & Machine Learning
+          description: Radiation-risk assessment for exploration and data-driven SEP forecasting.
+          emoji: 🤖
+          gradient: from-teal-400 to-cyan-600
+          status: emerging
+          topics: [SEP prediction, Deep learning, Radiation risk]
+          cta:
+            text: IMAP/HIT
+            url: projects/imap/
+        - name: Instruments & Simulation
+          description: Calibrating particle telescopes and modelling their response with Geant4 — from LND on the Moon to HET and EPI-Hi in space.
+          emoji: 🔬
+          gradient: from-amber-400 to-yellow-600
+          status: active
+          topics: [Geant4, Cross-calibration, Data products]
+          cta:
+            text: Experience
+            url: experience/#missions
+        - name: Flares & Coronal Shocks
+          description: Where SEPs start — coronal shock waves, flare statistics and radio bursts, the topic of my first papers at Nanjing.
+          emoji: 🔥
+          gradient: from-rose-400 to-pink-600
+          status: completed
+          topics: [CME shocks, Flare waiting times, Remote sensing]
+          cta:
+            text: Publications
+            url: publications/
+    design:
+      layout: cards
+
+  - block: collection
+    id: news
+    content:
+      title: Latest News
+      count: 4
+      filters:
+        folders:
+          - newsblog
+      order: desc
+      archive:
+        enable: true
+        text: All news
+        link: newsblog/
+    design:
+      view: date-title-summary
+
   - block: collection
     id: papers
     content:
@@ -56,86 +140,88 @@ sections:
         featured_only: true
     design:
       view: article-grid
-      columns: 2
-  - block: collection
+      columns: 3
+
+  - block: pub-chart
     content:
-      title: Recent/Selected Publications
-      text: 'Full list of Paper <a href=" https://ui.adsabs.harvard.edu/public-libraries/c6ahuEHzQ82MrHBbTvhEYw" style="color: blue; text-decoration: underline;">ADS</a>  <a href="https://scixplorer.org/public-libraries/c6ahuEHzQ82MrHBbTvhEYw" style="color: blue; text-decoration: underline;">SciX</a>'
-      filters:
-        folders:
-          - selectedpublications
-        exclude_featured: false
-    design:
-      view: citation
+      title: Publications by Year
+      text: 'Complete list on [NASA ADS](https://ui.adsabs.harvard.edu/public-libraries/c6ahuEHzQ82MrHBbTvhEYw) · [Google Scholar](https://scholar.google.com/citations?user=o1RDduwAAAAJ&hl=en)'
+      button:
+        text: Browse all publications
+        url: publications/
+
+  - block: space-weather
+    id: space-weather
+    content:
+      title: 🛰️ Space Weather Right Now
+      text: Live readings from NOAA's GOES satellites — the same kind of energetic-particle data I work with every day. Toggle energy channels to compare.
+
+  - block: career-timeline
+    id: timeline
+    content:
+      title: Journey So Far
+      items:
+        - date: 2026
+          emoji: 📄
+          title: Three first / co-first-author papers
+          text: 'Inverse-velocity-arrival SEP events (A&A), anomalous cosmic-ray helium (A&A), and a cosmic-ray cavity in Earth-Moon space (*Science Advances*).'
+          url: newsblog/
+        - date: Sep 2025
+          emoji: 🛰️
+          title: Joined NASA IMAP / HIT team
+          url: projects/imap/
+        - date: Sep 2023
+          emoji: 🌴
+          title: Postdoc at Caltech — Parker Solar Probe IS⊙IS/EPI-Hi
+          url: projects/parkersolarprobe/
+        - date: 2023
+          emoji: 🎓
+          title: PhD (Dr. rer. nat., cum laude), Kiel University
+          text: Project manager of Chang'E-4/LND and member of the Solar Orbiter EPD/HET team.
+        - date: 2015 – 2018
+          emoji: 🔭
+          title: B.S. & M.S., Nanjing University
+          text: First paper on coronal shocks and solar energetic particles (ApJ 2017).
+      
   - block: collection
     id: talks
     content:
-      title: Recent & Upcoming Talks
+      title: Recent Talks
+      count: 3
       filters:
         folders:
           - events
-    design:
-      view: card
-  - block: collection
-    id: news
-    content:
-      title: Recent News
-      subtitle: ''
-      text: ''
-      # Page type to display. E.g. post, talk, publication...
-      #page_type: newsblog  # this is the folder name under content
-      # Choose how many pages you would like to display (0 = all pages)
-      count: 0
-      # Filter on criteria
-      filters:
-        author: ''
-        category: ''
-        tag: ''
-        exclude_featured: false
-        exclude_future: false
-        exclude_past: false
-        publication_type: ''
-        folders:
-          - newsblog
-      # Choose how many pages you would like to offset by
-      offset: 0
-      # Page order: descending (desc) or ascending (asc) date.
       order: desc
+      archive:
+        enable: true
+        text: All talks
+        link: events/
     design:
-      # Choose a layout view
-      view: card
-      # Reduce spacing
-      spacing:
-        padding: [0, 0, 0, 0]
+      view: date-title-summary
 
-#  - block: collection
-#    id: test
-#    content: 
-#      title: Test
-#      filters:
-#        folders:
-#          - test
-#    design:
-#      view: card
-
-  - block: cta-card
-    demo: true # Only display this section in the Hugo Blox Builder demo site
+  - block: contact-info
+    id: contact
     content:
-      title: 👉 Build your own academic website like this
-      text: |-
-        This site is generated by Hugo Blox Builder - the FREE, Hugo-based open source website builder trusted by 250,000+ academics like you.
-
-        <a class="github-button" href="https://github.com/HugoBlox/hugo-blox-builder" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star HugoBlox/hugo-blox-builder on GitHub">Star</a>
-
-        Easily build anything with blocks - no-code required!
-
-        From landing pages, second brains, and courses to academic resumés, conferences, and tech blogs.
-      button:
-        text: Get Started
-        url: https://hugoblox.com/templates/
-    design:
-      card:
-        # Card background color (CSS class)
-        css_class: 'bg-primary-300 dark:bg-primary-700'
-        css_style: ''
+      title: Get in Touch
+      subtitle: Open to collaborations on energetic particles, space radiation and space weather.
+      visit_title: Where to find me
+      connect_title: Connect
+      address:
+        lines:
+          - Space Radiation Laboratory
+          - California Institute of Technology
+          - Pasadena, CA, United States
+      email: zgxu@caltech.edu
+      social:
+        - icon: brands/github
+          url: https://github.com/zigongxu
+        - icon: brands/linkedin
+          url: https://www.linkedin.com/in/zigongxu/
+        - icon: brands/x
+          url: https://x.com/zigong_xu
+        - icon: academicons/google-scholar
+          url: https://scholar.google.com/citations?user=o1RDduwAAAAJ&hl=en
+        - icon: academicons/orcid
+          url: https://orcid.org/0000-0002-9246-996X
+      show_form: false
 ---

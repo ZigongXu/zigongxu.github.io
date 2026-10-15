@@ -4,7 +4,7 @@ authors:
 - mason
 - cohencms
 - ho
-- DGmitchell
+- dgmitchell
 - allen
 - hill
 - andrews
@@ -59,7 +59,7 @@ authors:
 - freiherr-von-forstner
 - wiedenbeck
 - wimmer-schweingruber
-- xu
+- me
 - yedla
 
 date: "2021-12-01T00:00:00Z"
@@ -80,12 +80,7 @@ hugoblox:
   ids:
     doi: 10.1051/0004-6361/202141310
 
-links:
-  - type: doi
-    url: https://doi.org/10.1051/0004-6361/202141310
-
 projects: []
 slides: ""
 ---
 
-Abstract/notes.

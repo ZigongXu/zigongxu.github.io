@@ -11,7 +11,7 @@ authors:
 - christian
 - wiedenbeck
 - mcnutt
-- DGmitchell
+- dgmitchell
 - mason
 - kouloumvakos
 - wimmer-schweingruber
@@ -37,15 +37,7 @@ hugoblox:
     doi: 10.3847/2041-8213/ad8b18
     arxiv: 2410.19672
 
-links:
-  - type: preprint
-    provider: arxiv
-    id: 2410.19672
-  - type: doi
-    url: https://doi.org/10.3847/2041-8213/ad8b18
-
 projects: []
 slides: ""
 ---
 
-Abstract/notes.

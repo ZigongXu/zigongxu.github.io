@@ -31,12 +31,7 @@ hugoblox:
   ids:
     doi: 10.1051/0004-6361/202348723
 
-links:
-  - type: doi
-    url: https://doi.org/10.1051/0004-6361/202348723
-
 projects: []
 slides: ""
 ---
 
-Abstract/notes.

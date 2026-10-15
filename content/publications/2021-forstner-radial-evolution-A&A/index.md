@@ -64,15 +64,7 @@ hugoblox:
     doi: 10.1051/0004-6361/202039848
     arxiv: 2102.12185
 
-links:
-  - type: preprint
-    provider: arxiv
-    id: 2102.12185
-  - type: doi
-    url: https://doi.org/10.1051/0004-6361/202039848
-
 projects: []
 slides: ""
 ---
 
-Abstract/notes.

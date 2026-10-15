@@ -1,4 +1,3 @@
-````markdown
 ---
 title: "Distinct Solar Energetic Particle Shock Intensity─Diffusion Coefficient Relationships in the Inner Heliosphere"
 authors:
@@ -11,7 +10,7 @@ authors:
 - szalay
 - rankin
 - mccomas
-- DGmitchell
+- dgmitchell
 - christian
 - berland
 - cohen
@@ -47,14 +46,7 @@ hugoblox:
   ids:
     doi: 10.3847/2041-8213/ae109c
 
-links:
-  - type: doi
-    url: https://doi.org/10.3847/2041-8213/ae109c
-
 projects: []
 slides: ""
 ---
 
-Short description.
-
-````

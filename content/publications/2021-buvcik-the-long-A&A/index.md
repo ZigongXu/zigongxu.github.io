@@ -33,7 +33,7 @@ authors:
 - vecchio
 - kollhoff
 - kuhl
-- xu
+- me
 - eldrum
 
 date: "2021-12-01T00:00:00Z"
@@ -55,15 +55,7 @@ hugoblox:
     doi: 10.1051/0004-6361/202141009
     arxiv: 2109.05570
 
-links:
-  - type: preprint
-    provider: arxiv
-    id: 2109.05570
-  - type: doi
-    url: https://doi.org/10.1051/0004-6361/202141009
-
 projects: []
 slides: ""
 ---
 
-Abstract/notes.

@@ -8,7 +8,7 @@ authors:
 - burmeister
 - lohf
 - guo
-- xu
+- me
 - schuster
 - seimetz
 - freiherr-von-forstner
@@ -49,14 +49,7 @@ hugoblox:
   ids:
     doi: 10.1007/s11214-020-00725-3
 
-links:
-  - type: doi
-    url: https://doi.org/10.1007/s11214-020-00725-3
-
 projects: []
 slides: ""
 ---
 
-Short description.
-
-````

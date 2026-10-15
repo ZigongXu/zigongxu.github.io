@@ -34,15 +34,7 @@ hugoblox:
     doi: 10.3847/1538-4357/ad5e72
     arxiv: 2407.04188
 
-links:
-  - type: preprint
-    provider: arxiv
-    id: 2407.04188
-  - type: doi
-    url: https://doi.org/10.3847/1538-4357/ad5e72
-
 projects: []
 slides: ""
 ---
 
-Abstract/notes.

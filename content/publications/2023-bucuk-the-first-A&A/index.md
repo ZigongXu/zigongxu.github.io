@@ -19,7 +19,7 @@ authors:
 - kuhl
 - nitta
 - wiedenbeck
-- xu
+- me
 
 date: "2023-01-01T00:00:00Z"
 publishDate: "2023-01-01T00:00:00Z"
@@ -40,15 +40,7 @@ hugoblox:
     doi: 10.1051/0004-6361/202245037
     arxiv: 2210.16403
 
-links:
-  - type: preprint
-    provider: arxiv
-    id: 2210.16403
-  - type: doi
-    url: https://doi.org/10.1051/0004-6361/202245037
-
 projects: []
 slides: ""
 ---
 
-Abstract/notes.

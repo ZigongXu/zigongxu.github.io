@@ -1,4 +1,3 @@
-````markdown
 ---
 title: "Energy-Dependent SEP Fe/O Abundances During the May 2024 Superstorm"
 authors:
@@ -40,14 +39,7 @@ hugoblox:
   ids:
     doi: 10.1029/2025SW004604
 
-links:
-  - type: doi
-    url: https://doi.org/10.1029/2025SW004604
-
 projects: []
 slides: ""
 ---
 
-Short description.
-
-````

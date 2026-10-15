@@ -14,7 +14,7 @@ authors:
 - labrador
 - mccomas
 - mitchell-jg
-- DGmitchell
+- dgmitchell
 - rankin
 - schwadron
 - shen-m
@@ -42,15 +42,7 @@ hugoblox:
     doi: 10.3847/1538-4357/adadf7
     arxiv: 2502.17806
 
-links:
-  - type: preprint
-    provider: arxiv
-    id: 2502.17806
-  - type: doi
-    url: https://doi.org/10.3847/1538-4357/adadf7
-
 projects: []
 slides: ""
 ---
 
-Abstract/notes.

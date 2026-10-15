@@ -1,5 +1,4 @@
 ---
-title: News and Blogs
-view: article-grid
-columns: 2
+title: News
+view: card
 ---
