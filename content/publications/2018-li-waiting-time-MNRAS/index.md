@@ -1,7 +1,7 @@
 ---
 title: "Waiting time distributions of solar and stellar flares: Poisson process or with memory?"
 authors:
-- li
+- lichuan
 - zhong
 - me
 - he

@@ -1,0 +1,8 @@
+schema: hugoblox/author/v1
+slug: smith-mt
+name:
+  display: "M. T. Smith"
+  given: "M. T."
+  family: "Smith"
+role: ""
+links: []

@@ -5,6 +5,9 @@ date: 2026-04-01
 weight: 2
 links:
   - type: custom
+    label: ESA Science Nugget #95
+    url: https://www.cosmos.esa.int/web/solar-orbiter/-/science-nugget-first-observations-of-anomalous-cosmic-rays-helium-by-solar-orbiter-het
+  - type: custom
     label: EPD data browser
     url: https://espada.uah.es/epd/
 tags:
@@ -23,6 +26,7 @@ Member of the EPD/HET team at Kiel (2020–2023): HET data analysis and cross-ca
 
 ## Key results
 - **Anomalous cosmic-ray helium in the inner heliosphere** — first radial gradient of ACR helium between 0.3 and 1 au, ≈22%/au (≈32%/au with the GCR contribution removed), increasing with solar modulation (first author, [A&A 2026](https://doi.org/10.1051/0004-6361/202558218)).
+  - 🌟 Featured by ESA as [Solar Orbiter Science Nugget #95](https://www.cosmos.esa.int/web/solar-orbiter/-/science-nugget-first-observations-of-anomalous-cosmic-rays-helium-by-solar-orbiter-het) — *"Anomalous cosmic rays within the inner heliosphere: first observations of ACR helium by Solar Orbiter/HET"* (June 2026). The nugget shows that HET's quiet-time helium spectra agree well with other instruments, and that the measured gradients are consistent with Parker Solar Probe, pointing to different particle transport inside 1 au than farther out.
 - Co-author of Solar Orbiter's *First Results* special issue papers (A&A 656, 2021) and many multi-spacecraft SEP studies, including ³He-rich events and widespread events.
 
 <figure>

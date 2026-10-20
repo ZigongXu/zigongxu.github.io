@@ -1,7 +1,7 @@
 schema: hugoblox/author/v1
 slug: pecora
 name:
-  display: Pecora
+  display: "F. Pecora"
   given: ""
   family: "Pecora"
 role: ""

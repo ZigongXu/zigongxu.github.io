@@ -44,7 +44,7 @@ sections:
           description: Space missions
           sub_metric: PSP · Solar Orbiter · IMAP · Chang'E-4
           icon: hero/rocket-launch
-        - statistic: "13"
+        - statistic: "14"
           description: Conference talks & posters
           sub_metric: incl. invited talk at AGU 2025
           icon: hero/presentation-chart-bar
@@ -166,6 +166,11 @@ sections:
           title: Three first / co-first-author papers
           text: 'Inverse-velocity-arrival SEP events (A&A), anomalous cosmic-ray helium (A&A), and a cosmic-ray cavity in Earth-Moon space (*Science Advances*).'
           url: newsblog/
+        - date: Jun 2026
+          emoji: 🎤
+          title: Co-convened a session at SHINE 2026
+          text: 'Session 13, *Dynamics of Particle Populations Throughout the Inner Heliosphere*; my ACR helium result featured as an ESA Solar Orbiter Science Nugget.'
+          url: newsblog/2026-shine-session/
         - date: Sep 2025
           emoji: 🛰️
           title: Joined NASA IMAP / HIT team

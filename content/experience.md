@@ -34,6 +34,9 @@ sections:
         - Mentor of high-school summer interns at Caltech (2024, 2025) — LND solar energetic particle data analysis
         - Interns from Ricarda-Huch-Schule, Kiel (2019) — Python and data analysis of Chang'E-4/LND and MSL/RAD measurements
 
+        **Conference organization**
+        - Co-convener, SHINE 2026 Session 13: *Dynamics of Particle Populations Throughout the Inner Heliosphere* (Madison, WI, June–July 2026)
+
         **Peer review**
         - Referee for *ApJ*, *GRL*, *Planetary and Space Science*, *Advances in Space Research*, *Scientific Data*, *Results in Engineering*
         - NASA Heliophysics Guest Investigators Open (HGIO) panel support

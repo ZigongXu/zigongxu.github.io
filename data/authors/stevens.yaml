@@ -1,7 +1,7 @@
 schema: hugoblox/author/v1
 slug: stevens
 name:
-  display: Stevens
+  display: "M. L. Stevens"
   given: ""
   family: "Stevens"
 role: ""

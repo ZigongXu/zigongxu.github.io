@@ -1,0 +1,8 @@
+schema: hugoblox/author/v1
+slug: hill-me
+name:
+  display: "M. E. Hill"
+  given: "M. E."
+  family: "Hill"
+role: ""
+links: []

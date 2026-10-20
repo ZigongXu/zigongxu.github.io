@@ -1,0 +1,8 @@
+schema: hugoblox/author/v1
+slug: martin-c
+name:
+  display: "C. Martin"
+  given: "C."
+  family: "Martin"
+role: ""
+links: []

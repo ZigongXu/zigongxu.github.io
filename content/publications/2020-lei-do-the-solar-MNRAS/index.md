@@ -2,7 +2,7 @@
 title: "Do the solar flares originating from an individual active region follow a random process or a memory-dependent correlation?"
 authors:
 - lei
-- li
+- lichuan
 - chen
 - zhong
 - me

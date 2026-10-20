@@ -1,0 +1,8 @@
+schema: hugoblox/author/v1
+slug: mall-u
+name:
+  display: "U. Mall"
+  given: "U."
+  family: "Mall"
+role: ""
+links: []

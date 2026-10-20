@@ -1,7 +1,7 @@
 schema: hugoblox/author/v1
 slug: hill
 name:
-  display: Hill
+  display: "M. E. Hill"
   given: ""
   family: "Hill"
 role: ""

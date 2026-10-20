@@ -1,24 +1,24 @@
 ---
 title: "Investigation of the inverse velocity dispersion in a solar energetic particle event observed by Solar Orbiter"
 authors:
-- ding
-- wimmer-schweingruber
-- kollhoff
-- kuhl
-- yang-l
-- berger
-- kouloumvakos
-- wijsen
-- guo
-- pacheco
-- li
-- temmer
-- rodriguez-pacheco
-- allen
-- ho
-- mason
-- me
-- gunaseelan
+- "ding-z"
+- "wimmer-schweingruber"
+- "kollhoff-a"
+- "kuhl-p"
+- "yang-l"
+- "berger-l"
+- "kouloumvakos"
+- "wijsen-n"
+- "guo-j"
+- "pacheco-d"
+- "li-y"
+- "temmer"
+- "rodriguez-pacheco"
+- "allen"
+- "ho"
+- "mason"
+- "me"
+- "gunaseelan-s"
 
 date: "2025-04-01T00:00:00Z"
 publishDate: "2025-04-01T00:00:00Z"

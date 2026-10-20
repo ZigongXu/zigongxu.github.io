@@ -1,24 +1,24 @@
 ---
 title: "Species-dependent Variability in the Energy Spectra of Intense Solar Energetic Particle Events Observed by PSP/ISʘIS/EPI-Hi/LET"
 authors:
-- pak
-- cuesta
-- farooki
-- khoo
-- me
-- davis
-- leske
-- cohen
-- mccomas
-- shrestha
-- mitchell-jg
-- labrador
-- rankin
-- kasapis
-- szalay
-- cummings
-- muro
-- wiedenbeck
+- "pak"
+- "cuesta"
+- "farooki-ha"
+- "khoo"
+- "me"
+- "davis-aj"
+- "leske"
+- "cohencms"
+- "mccomas"
+- "shrestha-bl"
+- "mitchell-jg"
+- "labrador-aw"
+- "rankin-js"
+- "kasapis"
+- "szalay"
+- "cummings"
+- "muro"
+- "wiedenbeck"
 
 date: "2025-11-01T00:00:00Z"
 publishDate: "2025-11-01T00:00:00Z"

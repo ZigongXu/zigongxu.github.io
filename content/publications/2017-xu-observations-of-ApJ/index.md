@@ -2,8 +2,8 @@
 title: "Observations of a Coronal Shock Wave and the Production of Solar Energetic Particles"
 authors:
 - me
-- li
-- ding
+- lichuan
+- dingmingde
 
 date: "2017-05-01T00:00:00Z"
 publishDate: "2017-05-01T00:00:00Z"
