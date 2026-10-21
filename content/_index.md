@@ -161,6 +161,11 @@ sections:
     content:
       title: Journey So Far
       items:
+        - date: Sep 2026
+          emoji: ⭐
+          title: Senior Postdoctoral Scholar, Caltech
+          text: Promoted to Senior Postdoctoral Scholar Research Associate in Physics.
+          url: newsblog/2026-senior-postdoc/
         - date: 2026
           emoji: 📄
           title: Three first / co-first-author papers

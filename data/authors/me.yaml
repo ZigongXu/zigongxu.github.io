@@ -12,7 +12,7 @@ postnominals:
   - PhD
 status:
   icon: "☀️"
-role: Postdoctoral Scholar Research Associate in Physics
+role: Senior Postdoctoral Scholar Research Associate in Physics
 bio: |
   I study how the Sun accelerates particles to high energies and what those particles — together with galactic and anomalous cosmic rays — do to the radiation environment of the inner heliosphere and the Moon. I work hands-on with instrument data from NASA's Parker Solar Probe (IS⊙IS/EPI-Hi) and IMAP (HIT), ESA's Solar Orbiter (EPD/HET), and China's Chang'E-4 lander (LND), combining multi-spacecraft observations, Geant4 simulation, statistics and machine learning to understand solar energetic particle events and assess radiation risk for space exploration.
 
@@ -71,9 +71,19 @@ education:
       Outstanding Graduate Award (2015).
 
 experience:
+  - role: Senior Postdoctoral Scholar Research Associate in Physics
+    org: California Institute of Technology, Pasadena, CA
+    start: 2026-09-01
+    summary: |
+      Promoted to Senior Postdoctoral Scholar in September 2026. Continuing work on Parker Solar Probe IS⊙IS/EPI-Hi and IMAP/HIT: multi-spacecraft studies of solar energetic particles and cosmic rays, radiation environments of the inner heliosphere and cis-lunar space, and machine learning for SEP prediction.
+    button:
+      text: Caltech page
+      url: 'https://zigongxu.people.caltech.edu/'
+      icon: hero/arrow-top-right-on-square
   - role: Postdoctoral Scholar Research Associate in Physics
     org: California Institute of Technology, Pasadena, CA
     start: 2023-09-01
+    end: 2026-08-31
     summary: |
       Advisor: Dr. Christina M. S. Cohen.  \
       **Parker Solar Probe — IS⊙IS/EPI-Hi team member** (2023–present) and **IMAP — HIT team member** (2025–present).  \
