@@ -108,7 +108,9 @@ hugoblox:
     style: minimal                      # minimal | columns | centered
     language_switcher: true
     # Custom footer text (HTML supported)
-    text: ""
+    # Visitor counter (Vercount, https://vercount.one). Hidden until the numbers load;
+    # the script is added in layouts/_partials/hooks/body-end/visitor-counter.html
+    text: '<span id="visitor-counter" style="display:none">👀 <span id="vercount_value_site_uv">–</span> visitors · <span id="vercount_value_site_pv">–</span> page views</span>'
 
   # ────────────────────────────────────────────────────────────────────────────
   # COPYRIGHT

@@ -1,0 +1,27 @@
+{{/* Visitor counter: Vercount (https://vercount.one) — free, no account, Busuanzi-compatible.
+     Fills #vercount_value_site_uv / #vercount_value_site_pv in the footer.
+     The footer line is shown only once real numbers have arrived. */}}
+<script defer src="https://events.vercount.one/js"></script>
+<script>
+(function () {
+  var box = document.getElementById("visitor-counter");
+  if (!box) return;
+  var ids = ["vercount_value_site_uv", "vercount_value_site_pv"];
+  function ready() {
+    return ids.every(function (id) {
+      var el = document.getElementById(id);
+      return el && /\d/.test(el.textContent);
+    });
+  }
+  function check() {
+    if (ready()) { box.style.display = ""; obs.disconnect(); return true; }
+    return false;
+  }
+  var obs = new MutationObserver(check);
+  ids.forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) obs.observe(el, { childList: true, characterData: true, subtree: true });
+  });
+  check();
+})();
+</script>
