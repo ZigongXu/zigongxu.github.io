@@ -14,7 +14,7 @@ sections:
       text: ''
       button:
         text: Download CV
-        url: uploads/CV__20251228.pdf
+        url: uploads/cv.pdf
       headings:
         about: ''
         education: ''
