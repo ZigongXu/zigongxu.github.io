@@ -1,0 +1,45 @@
+{{- /*
+  Photo wall: shows every image in this page's `photos/` folder.
+
+  Add a photo: drop a .jpg/.png/.webp into content/gallery/photos/.
+  Newest first: files are sorted by name, descending, so start names with
+  the date, e.g. 2026-11-agu-talk.jpg.
+  Caption (optional): add an entry under `photos:` in the page's front matter:
+      photos:
+        - file: 2026-11-agu-talk.jpg
+          caption: Invited talk at AGU 2026
+  Without one, the caption is made from the file name.
+*/ -}}
+{{- $captions := dict -}}
+{{- range .Page.Params.photos -}}
+  {{- $captions = merge $captions (dict .file .caption) -}}
+{{- end -}}
+{{- $imgs := (.Page.Resources.Match "photos/*").ByType "image" -}}
+{{- $imgs = sort $imgs "Name" "desc" -}}
+<div class="photo-wall not-prose">
+  {{- range $imgs -}}
+    {{- $file := path.Base .Name -}}
+    {{- $caption := index $captions $file -}}
+    {{- if not $caption -}}
+      {{- $caption = replaceRE `^\d{4}(-\d{2})?(-\d{2})?-` "" (strings.TrimSuffix (path.Ext $file) $file) | replaceRE `[-_]+` " " | humanize -}}
+    {{- end -}}
+    {{- $thumb := . -}}
+    {{- if gt .Width 900 }}{{ $thumb = .Resize "900x webp q85" }}{{ end -}}
+    <figure class="photo-wall__item">
+      <a href="{{ .RelPermalink }}" target="_blank" rel="noopener">
+        <img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" alt="{{ $caption }}" loading="lazy">
+      </a>
+      <figcaption>{{ $caption }}</figcaption>
+    </figure>
+  {{- end -}}
+</div>
+<style>
+.photo-wall { column-count: 3; column-gap: 1.25rem; margin: 2rem 0; }
+@media (max-width: 1024px) { .photo-wall { column-count: 2; } }
+@media (max-width: 600px)  { .photo-wall { column-count: 1; } }
+.photo-wall__item { break-inside: avoid; margin: 0 0 1.25rem; }
+.photo-wall__item a { display: block; border-radius: 0.9rem; overflow: hidden; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12); }
+.photo-wall__item img { display: block; width: 100%; height: auto; transition: transform 0.3s ease; }
+.photo-wall__item a:hover img { transform: scale(1.03); }
+.photo-wall__item figcaption { margin-top: 0.5rem; font-size: 0.9rem; line-height: 1.4; opacity: 0.75; }
+</style>
