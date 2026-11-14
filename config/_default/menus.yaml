@@ -17,6 +17,9 @@ main:
   - name: Experience
     url: experience/
     weight: 6
+  - name: Gallery
+    url: gallery/
+    weight: 7
   - name: Space Weather
     url: /#space-weather
-    weight: 7
+    weight: 8
