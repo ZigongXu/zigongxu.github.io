@@ -1,0 +1,348 @@
+{{/*
+  Custom block: full-screen animated hero.
+  A canvas scene of the Sun with energetic particles streaming out along
+  Parker-spiral magnetic field lines toward the Earth and Moon. CMEs erupt
+  every few seconds; clicking or tapping launches one toward the pointer.
+  The particle rate follows the live NOAA GOES >=10 MeV proton flux.
+  Respects prefers-reduced-motion (draws one still frame).
+
+  content: kicker, name, tagline, topics (list), missions (list),
+           buttons (list of {text, url, style: primary|ghost}), hint
+*/}}
+{{ $page := .wcPage }}
+{{ $block := .wcBlock }}
+{{ $c := $block.content }}
+{{ $id := printf "hero-%d" now.UnixNano }}
+<div id="{{ $id }}" class="zx-hero" aria-label="Animated illustration: energetic particles streaming from the Sun along spiral magnetic field lines toward the Earth and Moon">
+  <canvas class="zx-hero__canvas" aria-hidden="true"></canvas>
+  <div class="zx-hero__veil" aria-hidden="true"></div>
+
+  <div class="zx-hero__content">
+    {{ with $c.kicker }}<p class="zx-hero__kicker"><span class="zx-hero__dot" aria-hidden="true"></span>{{ . }}</p>{{ end }}
+    <h1 class="zx-hero__name">{{ $c.name | default site.Title }}</h1>
+    {{ with $c.tagline }}<p class="zx-hero__tagline">{{ . | $page.RenderString }}</p>{{ end }}
+
+    {{ with $c.topics }}
+    <p class="zx-hero__topics" aria-label="Research topics">
+      {{ range $i, $t := . }}<span class="zx-hero__topic{{ if eq $i 0 }} is-on{{ end }}">{{ $t }}</span>{{ end }}
+    </p>
+    {{ end }}
+
+    {{ with $c.buttons }}
+    <div class="zx-hero__actions">
+      {{ range . }}
+      <a class="zx-hero__btn zx-hero__btn--{{ .style | default "ghost" }}" href="{{ .url | relURL }}">{{ .text }}</a>
+      {{ end }}
+    </div>
+    {{ end }}
+
+    {{ with $c.missions }}
+    <ul class="zx-hero__missions" aria-label="Missions">
+      {{ range . }}<li>{{ . }}</li>{{ end }}
+    </ul>
+    {{ end }}
+  </div>
+
+  <div class="zx-hero__live" data-hero="live" hidden>
+    <span class="zx-hero__pulse" aria-hidden="true"></span>
+    <span data-hero="livetext">Live · GOES ≥10 MeV protons</span>
+  </div>
+  {{ with $c.hint }}<p class="zx-hero__hint" aria-hidden="true">{{ . }}</p>{{ end }}
+  <a class="zx-hero__scroll" href="#section-resume-biography-3" aria-label="Scroll to content">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+  </a>
+</div>
+
+<style>
+.blox-hero-heliosphere { padding: 0 !important; }
+.zx-hero {
+  --zx-amber: #fbbf24; --zx-coral: #fb7185; --zx-ink: #f5f3ff;
+  position: relative; isolation: isolate; overflow: hidden;
+  min-height: clamp(600px, calc(100svh - 4rem), 980px);
+  background: radial-gradient(120% 90% at 85% 40%, #1b1446 0%, #0b0a22 45%, #05040f 100%);
+  color: var(--zx-ink); display: flex; align-items: center;
+}
+.zx-hero__canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: -2; cursor: crosshair; }
+.zx-hero__veil { position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(90deg, rgba(5,4,15,.82) 0%, rgba(5,4,15,.45) 38%, rgba(5,4,15,0) 62%); }
+.zx-hero__content { position: relative; width: 100%; max-width: 80rem; margin: 0 auto; padding: 6rem 1.5rem 7rem; pointer-events: none; }
+.zx-hero__content > * { max-width: 40rem; }
+.zx-hero__content a, .zx-hero__content button { pointer-events: auto; }
+.zx-hero__kicker { display: inline-flex; align-items: center; gap: .6rem; font-size: .8rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: #c7c2ff; margin: 0 0 1.25rem; }
+.zx-hero__dot { width: .55rem; height: .55rem; border-radius: 50%; background: var(--zx-amber); box-shadow: 0 0 12px 2px rgba(251,191,36,.8); }
+.zx-hero__name { font-size: clamp(3.2rem, 9vw, 7rem); line-height: .95; font-weight: 800; letter-spacing: -.035em; margin: 0; color: #fff;
+  text-shadow: 0 0 40px rgba(124,108,255,.35); }
+.zx-hero__name::after { content: "."; color: var(--zx-amber); }
+.zx-hero__tagline { margin: 1.5rem 0 0; font-size: clamp(1.1rem, 2.1vw, 1.45rem); line-height: 1.5; color: #e4e1ff; }
+.zx-hero__tagline strong { color: #fff; }
+.zx-hero__topics { position: relative; height: 1.9rem; margin: 1.1rem 0 0; font-size: 1.05rem; font-weight: 600; color: var(--zx-amber); }
+.zx-hero__topic { position: absolute; left: 0; top: 0; white-space: nowrap; opacity: 0; transform: translateY(.6rem); transition: opacity .6s ease, transform .6s ease; }
+.zx-hero__topic.is-on { opacity: 1; transform: none; }
+.zx-hero__topic::before { content: "→ "; color: #a5a0ff; }
+.zx-hero__actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2.25rem; }
+.zx-hero__btn { display: inline-flex; align-items: center; min-height: 48px; padding: 0 1.4rem; border-radius: 999px; font-weight: 600; font-size: 1rem; text-decoration: none !important; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+.zx-hero__btn--primary { background: linear-gradient(135deg, #fcd34d, #f59e0b); color: #1a1033 !important; box-shadow: 0 8px 30px -8px rgba(251,191,36,.7); }
+.zx-hero__btn--primary:hover { transform: translateY(-2px); box-shadow: 0 14px 36px -8px rgba(251,191,36,.85); }
+.zx-hero__btn--ghost { color: #fff !important; border: 1px solid rgba(255,255,255,.35); background: rgba(255,255,255,.06); backdrop-filter: blur(6px); }
+.zx-hero__btn--ghost:hover { background: rgba(255,255,255,.14); transform: translateY(-2px); }
+.zx-hero__missions { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; padding: 0; margin: 2.5rem 0 0; }
+.zx-hero__missions li { font-size: .8rem; font-weight: 500; letter-spacing: .02em; color: #d9d6ff; padding: .35rem .8rem; border-radius: 999px; border: 1px solid rgba(165,160,255,.3); background: rgba(20,16,60,.45); backdrop-filter: blur(6px); }
+.zx-hero__live { position: absolute; right: 1.25rem; bottom: 1.25rem; display: inline-flex; align-items: center; gap: .55rem; font-size: .78rem; color: #e4e1ff; padding: .45rem .85rem; border-radius: 999px; background: rgba(10,8,30,.6); border: 1px solid rgba(255,255,255,.14); backdrop-filter: blur(6px); }
+.zx-hero__pulse { width: .5rem; height: .5rem; border-radius: 50%; background: #34d399; box-shadow: 0 0 0 0 rgba(52,211,153,.7); animation: zxPulse 2s infinite; }
+.zx-hero__live.is-storm .zx-hero__pulse { background: #fb7185; box-shadow: 0 0 0 0 rgba(251,113,133,.7); }
+@keyframes zxPulse { 70% { box-shadow: 0 0 0 10px rgba(52,211,153,0); } 100% { box-shadow: 0 0 0 0 rgba(52,211,153,0); } }
+.zx-hero__hint { position: absolute; left: 50%; bottom: 1.6rem; transform: translateX(-50%); margin: 0; font-size: .78rem; letter-spacing: .06em; color: rgba(228,225,255,.6); pointer-events: none; white-space: nowrap; }
+.zx-hero__scroll { position: absolute; left: 50%; bottom: 3.6rem; transform: translateX(-50%); color: rgba(255,255,255,.7); animation: zxBob 2.4s ease-in-out infinite; display: inline-flex; padding: .6rem; }
+@keyframes zxBob { 50% { transform: translate(-50%, 6px); } }
+@media (max-width: 767px) {
+  .zx-hero { align-items: flex-end; }
+  .zx-hero__veil { background: linear-gradient(180deg, rgba(5,4,15,0) 0%, rgba(5,4,15,.35) 40%, rgba(5,4,15,.9) 75%); }
+  .zx-hero__content { padding: 16rem 1.25rem 6.5rem; }
+  .zx-hero__live { left: 1.25rem; right: auto; bottom: 1rem; }
+  .zx-hero__hint, .zx-hero__scroll { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .zx-hero__scroll, .zx-hero__pulse { animation: none; }
+  .zx-hero__topic { transition: none; }
+}
+</style>
+
+<script>
+(function () {
+  var root = document.getElementById("{{ $id }}");
+  if (!root) return;
+  var canvas = root.querySelector("canvas");
+  var ctx = canvas.getContext("2d");
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- rotating topic line ---------- */
+  var topics = root.querySelectorAll(".zx-hero__topic");
+  if (topics.length > 1 && !reduce) {
+    var ti = 0;
+    setInterval(function () {
+      topics[ti].classList.remove("is-on");
+      ti = (ti + 1) % topics.length;
+      topics[ti].classList.add("is-on");
+    }, 2800);
+  }
+
+  /* ---------- scene state ---------- */
+  var W = 0, H = 0, DPR = 1, mobile = false;
+  var sun = { x: 0, y: 0, r: 0 };
+  var earth = { x: 0, y: 0, r: 0 };
+  var stars = [], particles = [], fronts = [];
+  var NLINES = 14, WIND = 0;        // field lines; spiral winding (px per rad)
+  var rot = 0;                       // solar rotation angle
+  var activity = 1;                  // driven by live GOES flux
+  var mouse = { x: 0.5, y: 0.5 };
+  var last = 0, nextCME = 2.5, running = true, visible = true;
+
+  function rand(a, b) { return a + Math.random() * (b - a); }
+
+  function layout() {
+    var rect = root.getBoundingClientRect();
+    DPR = Math.min(window.devicePixelRatio || 1, 1.75);
+    W = rect.width; H = rect.height;
+    canvas.width = Math.round(W * DPR); canvas.height = Math.round(H * DPR);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    mobile = W < 768;
+    var m = Math.min(W, H);
+    if (mobile) { sun.x = W * 0.62; sun.y = H * 0.2; sun.r = m * 0.17; }
+    else        { sun.x = W * 0.8;  sun.y = H * 0.42; sun.r = m * 0.15; }
+    earth.r = Math.max(5, m * 0.012);
+    earth.x = mobile ? -1 : W * 0.6;
+    earth.y = H * 0.8;
+    WIND = Math.max(W, H) * 0.32;
+    stars = [];
+    var n = Math.round(W * H / 4200);
+    for (var i = 0; i < n; i++) stars.push({ x: Math.random(), y: Math.random(), z: rand(0.2, 1), r: rand(0.3, 1.25), t: rand(0, 6.28) });
+    var target = Math.round(Math.min(900, W * H / (mobile ? 900 : 1500)));
+    particles = [];
+    for (var j = 0; j < target; j++) particles.push(spawn(true));
+  }
+
+  /* A particle rides field line k: angle at the surface th0, and as it moves
+     out to distance s from the Sun's centre the line winds back by s/WIND. */
+  function pos(th0, s) {
+    var th = th0 + rot - (s - sun.r) / WIND;
+    return [sun.x + s * Math.cos(th), sun.y + s * Math.sin(th)];
+  }
+  function spawn(scatter, th0, burst) {
+    var e = Math.random();                      // "energy": faster and bluer when high
+    var line = Math.floor(Math.random() * NLINES);
+    var p = {
+      th0: th0 !== undefined ? th0 + rand(-0.18, 0.18) : (line / NLINES) * Math.PI * 2 + rand(-0.12, 0.12),
+      s: sun.r * (scatter ? rand(1, 6) : rand(1.0, 1.08)),
+      v: (burst ? rand(220, 520) : rand(40, 160)) * (0.6 + e),
+      e: burst ? rand(0.6, 1) : e,
+      tail: burst ? rand(28, 64) : rand(8, 26),
+      b: !!burst
+    };
+    return p;
+  }
+
+  function eruption(angle) {
+    if (angle === undefined) angle = rand(0, Math.PI * 2);
+    fronts.push({ a: angle, s: sun.r, v: rand(260, 360), w: rand(0.55, 0.85), life: 1 });
+    var n = Math.round((mobile ? 70 : 140) * Math.min(2.2, activity));
+    for (var i = 0; i < n; i++) particles.push(spawn(false, angle - rot, true));
+  }
+
+  function draw(t, dt) {
+    ctx.clearRect(0, 0, W, H);
+
+    /* stars with mouse parallax */
+    var px = (mouse.x - 0.5) * 18, py = (mouse.y - 0.5) * 12;
+    for (var i = 0; i < stars.length; i++) {
+      var st = stars[i];
+      var a = 0.35 + 0.65 * Math.abs(Math.sin(t * 0.0006 * (1 + st.z) + st.t));
+      ctx.globalAlpha = a * st.z;
+      ctx.fillStyle = "#e8e6ff";
+      ctx.beginPath(); ctx.arc(st.x * W - px * st.z, st.y * H - py * st.z, st.r, 0, 6.283); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+
+    /* Parker-spiral field lines */
+    ctx.lineWidth = 1;
+    var maxS = Math.hypot(W, H) * 1.1;
+    for (var k = 0; k < NLINES; k++) {
+      var th0 = (k / NLINES) * Math.PI * 2;
+      ctx.strokeStyle = "rgba(150,140,255,0.10)";
+      ctx.beginPath();
+      for (var s = sun.r; s < maxS; s += 14) {
+        var p = pos(th0, s);
+        if (s === sun.r) ctx.moveTo(p[0], p[1]); else ctx.lineTo(p[0], p[1]);
+      }
+      ctx.stroke();
+    }
+
+    /* Earth and its Moon */
+    if (earth.x > 0) {
+      var eg = ctx.createRadialGradient(earth.x, earth.y, 0, earth.x, earth.y, earth.r * 4);
+      eg.addColorStop(0, "rgba(96,165,250,0.45)"); eg.addColorStop(1, "rgba(96,165,250,0)");
+      ctx.fillStyle = eg; ctx.beginPath(); ctx.arc(earth.x, earth.y, earth.r * 4, 0, 6.283); ctx.fill();
+      ctx.fillStyle = "#60a5fa"; ctx.beginPath(); ctx.arc(earth.x, earth.y, earth.r, 0, 6.283); ctx.fill();
+      ctx.strokeStyle = "rgba(255,255,255,0.12)"; ctx.beginPath(); ctx.arc(earth.x, earth.y, earth.r * 5, 0, 6.283); ctx.stroke();
+      var ma = t * 0.00035;
+      ctx.fillStyle = "#e5e7eb"; ctx.beginPath(); ctx.arc(earth.x + Math.cos(ma) * earth.r * 5, earth.y + Math.sin(ma) * earth.r * 5, earth.r * 0.45, 0, 6.283); ctx.fill();
+    }
+
+    /* particles: short glowing streaks along their field line */
+    ctx.globalCompositeOperation = "lighter";
+    ctx.lineCap = "round";
+    for (var j = particles.length - 1; j >= 0; j--) {
+      var q = particles[j];
+      q.s += q.v * dt;
+      if (q.s > maxS) {
+        if (q.b) { particles.splice(j, 1); continue; }  // burst particles retire
+        particles[j] = spawn(false); continue;
+      }
+      var head = pos(q.th0, q.s), tail = pos(q.th0, Math.max(sun.r, q.s - q.tail));
+      var hue = q.e > 0.66 ? "200,215,255" : q.e > 0.33 ? "255,236,190" : "251,191,36";
+      var fade = Math.min(1, (q.s - sun.r) / (sun.r * 0.6));
+      var mid = pos(q.th0, Math.max(sun.r, q.s - q.tail * 0.4));
+      ctx.lineWidth = q.b ? 2 : 1.4;
+      ctx.strokeStyle = "rgba(" + hue + "," + (0.25 * fade) + ")";
+      ctx.beginPath(); ctx.moveTo(tail[0], tail[1]); ctx.lineTo(mid[0], mid[1]); ctx.stroke();
+      ctx.strokeStyle = "rgba(" + hue + "," + (0.85 * fade) + ")";
+      ctx.beginPath(); ctx.moveTo(mid[0], mid[1]); ctx.lineTo(head[0], head[1]); ctx.stroke();
+    }
+
+    /* CME shock fronts */
+    for (var f = fronts.length - 1; f >= 0; f--) {
+      var fr = fronts[f];
+      fr.s += fr.v * dt; fr.life -= dt * 0.28;
+      if (fr.life <= 0) { fronts.splice(f, 1); continue; }
+      ctx.strokeStyle = "rgba(255,255,255," + (0.55 * fr.life) + ")";
+      ctx.lineWidth = 2.5 + 3 * fr.life;
+      ctx.beginPath(); ctx.arc(sun.x, sun.y, fr.s, fr.a - fr.w, fr.a + fr.w); ctx.stroke();
+      ctx.strokeStyle = "rgba(251,113,133," + (0.35 * fr.life) + ")";
+      ctx.lineWidth = 10 * fr.life;
+      ctx.beginPath(); ctx.arc(sun.x, sun.y, fr.s - 10, fr.a - fr.w * 0.8, fr.a + fr.w * 0.8); ctx.stroke();
+    }
+
+    /* the Sun: corona glow, rays, disk with limb darkening */
+    var cg = ctx.createRadialGradient(sun.x, sun.y, sun.r * 0.9, sun.x, sun.y, sun.r * 3.2);
+    cg.addColorStop(0, "rgba(251,191,36,0.55)");
+    cg.addColorStop(0.35, "rgba(244,114,182,0.14)");
+    cg.addColorStop(1, "rgba(124,108,255,0)");
+    ctx.fillStyle = cg; ctx.beginPath(); ctx.arc(sun.x, sun.y, sun.r * 3.2, 0, 6.283); ctx.fill();
+    for (var r = 0; r < 18; r++) {
+      var ra = r / 18 * 6.283 + rot * 0.6 + Math.sin(t * 0.0004 + r) * 0.05;
+      var len = sun.r * (1.5 + 0.5 * Math.sin(t * 0.0007 + r * 2.1));
+      var rg = ctx.createLinearGradient(sun.x, sun.y, sun.x + Math.cos(ra) * len, sun.y + Math.sin(ra) * len);
+      rg.addColorStop(0, "rgba(255,226,150,0.20)"); rg.addColorStop(1, "rgba(255,226,150,0)");
+      ctx.strokeStyle = rg; ctx.lineWidth = sun.r * 0.16;
+      ctx.beginPath(); ctx.moveTo(sun.x, sun.y); ctx.lineTo(sun.x + Math.cos(ra) * len, sun.y + Math.sin(ra) * len); ctx.stroke();
+    }
+    ctx.globalCompositeOperation = "source-over";
+    var dg = ctx.createRadialGradient(sun.x - sun.r * 0.25, sun.y - sun.r * 0.25, sun.r * 0.1, sun.x, sun.y, sun.r);
+    dg.addColorStop(0, "#fff7d6"); dg.addColorStop(0.55, "#fcd34d"); dg.addColorStop(0.9, "#f59e0b"); dg.addColorStop(1, "#ea7a0c");
+    ctx.fillStyle = dg; ctx.beginPath(); ctx.arc(sun.x, sun.y, sun.r, 0, 6.283); ctx.fill();
+    /* a couple of sunspots that rotate with the Sun */
+    for (var sp = 0; sp < 3; sp++) {
+      var sa = rot * 4 + sp * 0.5 + 2.2, sx = Math.cos(sa);
+      if (sx < 0) continue;
+      ctx.fillStyle = "rgba(180,83,9," + (0.55 * sx) + ")";
+      ctx.beginPath();
+      ctx.ellipse(sun.x + Math.sin(sa) * sun.r * 0.7, sun.y + (sp - 1) * sun.r * 0.28, sun.r * 0.06 * sx + 1, sun.r * 0.05, 0, 0, 6.283);
+      ctx.fill();
+    }
+  }
+
+  function frame(now) {
+    if (!running) return;
+    var dt = last ? Math.min(0.05, (now - last) / 1000) : 0.016;
+    last = now;
+    rot += dt * 0.035;
+    nextCME -= dt * Math.min(2.5, activity);
+    if (nextCME <= 0) { eruption(); nextCME = rand(6, 10); }
+    draw(now, dt);
+    requestAnimationFrame(frame);
+  }
+
+  function start() { if (!running) { running = true; last = 0; requestAnimationFrame(frame); } }
+  function stop() { running = false; }
+
+  layout();
+  if (reduce) {
+    rot = 0.4; draw(0, 0);
+  } else {
+    requestAnimationFrame(frame);
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (es) { visible = es[0].isIntersecting; visible && !document.hidden ? start() : stop(); }).observe(root);
+    }
+    document.addEventListener("visibilitychange", function () { document.hidden ? stop() : (visible && start()); });
+    root.addEventListener("pointermove", function (e) {
+      var b = root.getBoundingClientRect();
+      mouse.x = (e.clientX - b.left) / b.width; mouse.y = (e.clientY - b.top) / b.height;
+    });
+    root.addEventListener("click", function (e) {
+      if (e.target.closest("a, button")) return;
+      var b = root.getBoundingClientRect();
+      eruption(Math.atan2(e.clientY - b.top - sun.y, e.clientX - b.left - sun.x));
+    });
+  }
+  var rt;
+  window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { layout(); if (reduce) draw(0, 0); }, 150); });
+
+  /* ---------- live space weather: GOES >=10 MeV proton flux ---------- */
+  var live = root.querySelector('[data-hero="live"]'), liveText = root.querySelector('[data-hero="livetext"]');
+  fetch("https://services.swpc.noaa.gov/json/goes/primary/integral-protons-6-hour.json")
+    .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+    .then(function (rows) {
+      var flux = null;
+      for (var i = rows.length - 1; i >= 0; i--) {
+        if (rows[i].energy === ">=10 MeV" && rows[i].flux > 0) { flux = rows[i].flux; break; }
+      }
+      if (flux === null) return;
+      activity = Math.max(0.7, Math.min(3, 1 + 0.6 * Math.log10(flux / 0.3)));
+      var storm = flux >= 10;
+      var level = flux >= 1e5 ? "S5" : flux >= 1e4 ? "S4" : flux >= 1e3 ? "S3" : flux >= 100 ? "S2" : flux >= 10 ? "S1" : null;
+      liveText.textContent = "Live · ≥10 MeV protons " + (flux < 10 ? flux.toFixed(2) : Math.round(flux)) + " pfu · " + (level ? "radiation storm " + level : "quiet");
+      if (storm) live.classList.add("is-storm");
+      live.hidden = false;
+    })
+    .catch(function () {});
+})();
+</script>

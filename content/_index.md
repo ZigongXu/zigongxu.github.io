@@ -8,6 +8,31 @@ design:
   spacing: '5rem'
 
 sections:
+  - block: hero-heliosphere
+    content:
+      kicker: Space physicist · Caltech
+      name: Zigong Xu
+      tagline: I follow **energetic particles from the Sun to the Moon**, with data from Parker Solar Probe, Solar Orbiter, IMAP and Chang'E-4.
+      topics:
+        - Solar energetic particles
+        - CME-driven shocks
+        - Cosmic rays in the heliosphere
+        - The lunar radiation environment
+        - Space weather and machine learning
+      buttons:
+        - text: Explore my research
+          url: '#research'
+          style: primary
+        - text: Download CV
+          url: uploads/cv.pdf
+          style: ghost
+      missions:
+        - Parker Solar Probe
+        - Solar Orbiter
+        - IMAP
+        - Chang'E-4
+      hint: Click anywhere to launch a CME
+
   - block: resume-biography-3
     content:
       username: me
@@ -32,21 +57,21 @@ sections:
   - block: stats
     content:
       items:
-        - statistic: "40+"
-          description: Peer-reviewed papers
-          sub_metric: ApJ, A&A, Science Advances, GRL
+        - statistic: "50"
+          description: Publications
+          sub_metric: 7 first / co-first author · 2 in Science Advances
           icon: hero/document-text
-        - statistic: "7"
-          description: First / co-first author papers
-          sub_metric: 3 published in 2026
-          icon: hero/pencil-square
+        - statistic: "1,300+"
+          description: Citations
+          sub_metric: h-index 20 · Google Scholar
+          icon: hero/chart-bar
         - statistic: "4"
           description: Space missions
           sub_metric: PSP · Solar Orbiter · IMAP · Chang'E-4
           icon: hero/rocket-launch
-        - statistic: "14"
-          description: Conference talks & posters
-          sub_metric: incl. invited talk at AGU 2025
+        - statistic: "3"
+          description: Invited talks
+          sub_metric: AGU 2025 & 2026 · Solar Orbiter WG
           icon: hero/presentation-chart-bar
     design:
       layout: cards
@@ -113,6 +138,48 @@ sections:
             url: publications/
     design:
       layout: cards
+
+  - block: mission-map
+    id: missions
+    content:
+      title: Where my instruments fly
+      text: I work with particle detectors on four missions, from 9.86 solar radii to the far side of the Moon. Pick one to see where it flies and what I do with its data.
+      missions:
+        - key: psp
+          name: Parker Solar Probe
+          short: PSP
+          agency: NASA · launched 2018
+          color: '#fb923c'
+          orbit: { q: 0.046, Q: 0.73, w: 200, m0: 140 }
+          facts: Closer to the Sun than any spacecraft before it, 9.86 solar radii (0.046 au), once every 88 days.
+          role: Member of the IS⊙IS/EPI-Hi team since 2023. I study solar energetic particle events with inverse velocity arrival, and events seen by several spacecraft at once.
+          url: projects/parkersolarprobe/
+        - key: solo
+          name: Solar Orbiter
+          short: SolO
+          agency: ESA & NASA · launched 2020
+          color: '#a78bfa'
+          orbit: { q: 0.29, Q: 0.91, w: 60, m0: 250 }
+          facts: Comes within about 0.3 au of the Sun on an increasingly tilted orbit, carrying the Energetic Particle Detector (EPD).
+          role: EPD/HET team member, 2020–2023. Cross-calibration, cosmic-ray radial gradients, and the first observations of anomalous cosmic-ray helium in the inner heliosphere.
+          url: projects/solarorbiter/
+        - key: imap
+          name: IMAP
+          agency: NASA · launched 2025
+          color: '#34d399'
+          at: l1
+          facts: Watches the solar wind and energetic particles from the Sun–Earth L1 point, 1.5 million km sunward of Earth.
+          role: Member of the High-Energy Ion Telescope (HIT) team since launch.
+          url: projects/imap/
+        - key: ce4
+          name: Chang'E-4
+          short: Moon · Chang'E-4
+          agency: CNSA · landed 2019
+          color: '#e2e8f0'
+          at: moon
+          facts: The first landing on the far side of the Moon, carrying the Lunar Lander Neutron and Dosimetry experiment (LND) built at Kiel University.
+          role: LND project manager, 2019–2023. The first solar energetic particle event measured on the far side, albedo protons, and a cosmic-ray cavity in Earth–Moon space.
+          url: projects/lnd/
 
   - block: collection
     id: news

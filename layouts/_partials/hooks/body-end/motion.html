@@ -1,0 +1,50 @@
+{{/*
+  Site-wide motion: sections ease in as they scroll into view, and a thin
+  progress bar runs along the top of the page. Everything stays visible if
+  JavaScript is off, and nothing moves for visitors who prefer reduced motion.
+*/}}
+<div class="zx-progress" aria-hidden="true"></div>
+<style>
+.zx-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; z-index: 9999; pointer-events: none;
+  background: linear-gradient(90deg, #f59e0b, #fb7185, #8b5cf6); transform-origin: 0 50%; transform: scaleX(0); }
+.zx-reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+.zx-reveal.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .zx-progress { display: none; }
+  .zx-reveal { opacity: 1; transform: none; transition: none; }
+}
+</style>
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce) return;
+
+  /* scroll progress */
+  var bar = document.querySelector(".zx-progress"), ticking = false;
+  function progress() {
+    var h = document.documentElement, max = h.scrollHeight - h.clientHeight;
+    bar.style.transform = "scaleX(" + (max > 0 ? h.scrollTop / max : 0) + ")";
+    ticking = false;
+  }
+  window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(progress); } }, { passive: true });
+  progress();
+
+  /* reveal sections (not the hero) as they enter the viewport */
+  if (!("IntersectionObserver" in window)) return;
+  var targets = [];
+  document.querySelectorAll(".hbb-section:not(.blox-hero-heliosphere)").forEach(function (sec) {
+    Array.prototype.forEach.call(sec.children, function (c) {
+      if (!c.classList.contains("home-section-bg") && c.tagName !== "SCRIPT" && c.tagName !== "STYLE") targets.push(c);
+    });
+  });
+  var vh = window.innerHeight;
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); } });
+  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.06 });
+  targets.forEach(function (t) {
+    if (t.getBoundingClientRect().top < vh * 0.92) return;   /* already on screen: leave as is */
+    t.classList.add("zx-reveal");
+    io.observe(t);
+  });
+})();
+</script>
