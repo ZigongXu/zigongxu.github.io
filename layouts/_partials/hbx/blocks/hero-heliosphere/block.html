@@ -163,8 +163,12 @@
 
   /* A particle rides field line k: angle at the surface th0, and as it moves
      out to distance s from the Sun's centre the line winds back by s/WIND. */
+  /* Screen y points down, so a growing angle turns clockwise on screen.
+     Seen from above the north pole the Sun turns counterclockwise (rot
+     decreases), and its field lines trail behind, winding clockwise outward
+     (angle grows with distance). */
   function pos(th0, s) {
-    var th = th0 + rot - (s - sun.r) / WIND;
+    var th = th0 + rot + (s - sun.r) / WIND;
     return [sun.x + s * Math.cos(th), sun.y + s * Math.sin(th)];
   }
   function spawn(scatter, th0, burst) {
@@ -223,7 +227,7 @@
       ctx.fillStyle = eg; ctx.beginPath(); ctx.arc(earth.x, earth.y, earth.r * 4, 0, 6.283); ctx.fill();
       ctx.fillStyle = "#60a5fa"; ctx.beginPath(); ctx.arc(earth.x, earth.y, earth.r, 0, 6.283); ctx.fill();
       ctx.strokeStyle = "rgba(255,255,255,0.12)"; ctx.beginPath(); ctx.arc(earth.x, earth.y, earth.r * 5, 0, 6.283); ctx.stroke();
-      var ma = t * 0.00035;
+      var ma = -t * 0.00035;   /* Moon orbits counterclockwise */
       ctx.fillStyle = "#e5e7eb"; ctx.beginPath(); ctx.arc(earth.x + Math.cos(ma) * earth.r * 5, earth.y + Math.sin(ma) * earth.r * 5, earth.r * 0.45, 0, 6.283); ctx.fill();
     }
 
@@ -268,7 +272,7 @@
     cg.addColorStop(1, "rgba(124,108,255,0)");
     ctx.fillStyle = cg; ctx.beginPath(); ctx.arc(sun.x, sun.y, sun.r * 3.2, 0, 6.283); ctx.fill();
     for (var r = 0; r < 18; r++) {
-      var ra = r / 18 * 6.283 + rot * 0.6 + Math.sin(t * 0.0004 + r) * 0.05;
+      var ra = r / 18 * 6.283 + rot + Math.sin(t * 0.0004 + r) * 0.05;
       var len = sun.r * (1.5 + 0.5 * Math.sin(t * 0.0007 + r * 2.1));
       var rg = ctx.createLinearGradient(sun.x, sun.y, sun.x + Math.cos(ra) * len, sun.y + Math.sin(ra) * len);
       rg.addColorStop(0, "rgba(255,226,150,0.20)"); rg.addColorStop(1, "rgba(255,226,150,0)");
@@ -279,13 +283,13 @@
     var dg = ctx.createRadialGradient(sun.x - sun.r * 0.25, sun.y - sun.r * 0.25, sun.r * 0.1, sun.x, sun.y, sun.r);
     dg.addColorStop(0, "#fff7d6"); dg.addColorStop(0.55, "#fcd34d"); dg.addColorStop(0.9, "#f59e0b"); dg.addColorStop(1, "#ea7a0c");
     ctx.fillStyle = dg; ctx.beginPath(); ctx.arc(sun.x, sun.y, sun.r, 0, 6.283); ctx.fill();
-    /* a couple of sunspots that rotate with the Sun */
+    /* sunspots, seen from above the north pole: they ride round with the
+       Sun's rotation (counterclockwise), at the same rate as the field lines */
     for (var sp = 0; sp < 3; sp++) {
-      var sa = rot * 4 + sp * 0.5 + 2.2, sx = Math.cos(sa);
-      if (sx < 0) continue;
-      ctx.fillStyle = "rgba(180,83,9," + (0.55 * sx) + ")";
+      var sa = rot + 0.9 + sp * 2.3, sr = sun.r * (0.38 + 0.17 * sp);
+      ctx.fillStyle = "rgba(180,83,9,0.45)";
       ctx.beginPath();
-      ctx.ellipse(sun.x + Math.sin(sa) * sun.r * 0.7, sun.y + (sp - 1) * sun.r * 0.28, sun.r * 0.06 * sx + 1, sun.r * 0.05, 0, 0, 6.283);
+      ctx.arc(sun.x + Math.cos(sa) * sr, sun.y + Math.sin(sa) * sr, sun.r * (0.07 - 0.015 * sp), 0, 6.283);
       ctx.fill();
     }
   }
@@ -294,7 +298,7 @@
     if (!running) return;
     var dt = last ? Math.min(0.05, (now - last) / 1000) : 0.016;
     last = now;
-    rot += dt * 0.035;
+    rot -= dt * 0.035;   /* counterclockwise on screen */
     nextCME -= dt * Math.min(2.5, activity);
     if (nextCME <= 0) { eruption(); nextCME = rand(6, 10); }
     draw(now, dt);
