@@ -169,7 +169,30 @@
      (angle grows with distance). */
   function pos(th0, s) {
     var th = th0 + rot + (s - sun.r) / WIND;
-    return [sun.x + s * Math.cos(th), sun.y + s * Math.sin(th)];
+    var w = warp(th, s);
+    return [sun.x + w[0] * Math.cos(w[1]), sun.y + w[0] * Math.sin(w[1]), w[2]];
+  }
+  /* How a passing CME bends the solar-wind field: lines inside its sector are
+     swept outward and piled up just behind the shock (the compressed sheath),
+     and pushed sideways round the flanks (draping). Returns [s, angle, compression]. */
+  function warp(th, s) {
+    var ds = 0, dth = 0, comp = 0;
+    for (var i = 0; i < fronts.length; i++) {
+      var fr = fronts[i];
+      var sec = fr.alpha + Math.asin(Math.min(0.95, fr.kappa)) + 0.22;
+      var d = Math.atan2(Math.sin(th - fr.a), Math.cos(th - fr.a));
+      if (Math.abs(d) > sec) continue;
+      var wgt = Math.pow(Math.cos(Math.PI / 2 * d / sec), 2) * Math.min(1, fr.life * 1.6);
+      var sh = fr.le * 1.1;
+      if (s < sh) {
+        var x = Math.max(0, (s - sun.r) / (sh - sun.r));
+        ds += (sh - s) * 0.62 * wgt * x * x;
+        comp = Math.max(comp, wgt * x * x);
+      }
+      var z = (s - sh) / (0.22 * sh);
+      dth += (d >= 0 ? 1 : -1) * 0.16 * wgt * Math.exp(-z * z) * Math.min(1, Math.abs(d) / (0.35 * sec));
+    }
+    return [s + ds, th + dth, comp];
   }
   function spawn(scatter, th0, burst) {
     var e = Math.random();                      // "energy": faster and bluer when high
@@ -187,9 +210,39 @@
 
   function eruption(angle) {
     if (angle === undefined) angle = rand(0, Math.PI * 2);
-    fronts.push({ a: angle, s: sun.r, v: rand(260, 360), w: rand(0.55, 0.85), life: 1 });
+    /* GCS flux rope: leg half-angle alpha, aspect ratio kappa; le = leading-edge height */
+    fronts.push({ a: angle, le: sun.r * 1.15, v: rand(170, 250), alpha: rand(0.38, 0.6), kappa: rand(0.24, 0.34), life: 1, ph: rand(0, 6.28) });
     var n = Math.round((mobile ? 70 : 140) * Math.min(2.2, activity));
     for (var i = 0; i < n; i++) particles.push(spawn(false, angle - rot, true));
+  }
+
+  /* GCS geometry in the CME's own frame (x along the propagation direction),
+     rotated to the eruption angle. Returns the shell's outer and inner edges
+     and the axis (screen x, y, outward normal x, y, tube radius), traced
+     leg -> front -> leg. */
+  function gcs(fr) {
+    var al = fr.alpha, ka = fr.kappa, sa = Math.sin(al), ca = Math.cos(al);
+    var apex = fr.le / (1 + ka);          /* axis apex; leading edge = (1 + kappa) x apex */
+    var hc = apex / (1 + sa);              /* centre of the circular front */
+    var rho = hc * sa, Lg = hc * ca;       /* front radius; leg length to the tangent point */
+    var ax = [], i, d, r0 = sun.r * 0.98;
+    for (i = 0; i <= 14; i++) { d = r0 + (Lg - r0) * i / 14; ax.push([d * ca, d * sa]); }
+    var ph1 = Math.atan2(Lg * sa, Lg * ca - hc);
+    for (i = 1; i < 48; i++) { var ph = ph1 - (2 * ph1) * i / 48; ax.push([hc + rho * Math.cos(ph), rho * Math.sin(ph)]); }
+    for (i = 14; i >= 0; i--) { d = r0 + (Lg - r0) * i / 14; ax.push([d * ca, -d * sa]); }
+    var outer = [], inner = [], axis = [], c = Math.cos(fr.a), s2 = Math.sin(fr.a);
+    function X(x, y) { return sun.x + x * c - y * s2; }
+    function Y(x, y) { return sun.y + x * s2 + y * c; }
+    for (i = 0; i < ax.length; i++) {
+      var p = ax[i], q = ax[Math.min(ax.length - 1, i + 1)], o = ax[Math.max(0, i - 1)];
+      var tx = q[0] - o[0], ty = q[1] - o[1], tl = Math.hypot(tx, ty) || 1;
+      var nx = -ty / tl, ny = tx / tl;     /* left normal = outward for this traversal */
+      var a = ka * Math.hypot(p[0], p[1]);
+      outer.push([X(p[0] + a * nx, p[1] + a * ny), Y(p[0] + a * nx, p[1] + a * ny)]);
+      inner.push([X(p[0] - a * nx, p[1] - a * ny), Y(p[0] - a * nx, p[1] - a * ny)]);
+      axis.push([X(p[0], p[1]), Y(p[0], p[1]), nx * c - ny * s2, nx * s2 + ny * c, a]);
+    }
+    return { outer: outer, inner: inner, axis: axis };
   }
 
   function draw(t, dt) {
@@ -211,13 +264,22 @@
     var maxS = Math.hypot(W, H) * 1.1;
     for (var k = 0; k < NLINES; k++) {
       var th0 = (k / NLINES) * Math.PI * 2;
+      var pts = [];
+      for (var s = sun.r; s < maxS; s += 10) pts.push(pos(th0, s));
+      ctx.lineWidth = 1;
       ctx.strokeStyle = "rgba(150,140,255,0.10)";
       ctx.beginPath();
-      for (var s = sun.r; s < maxS; s += 14) {
-        var p = pos(th0, s);
-        if (s === sun.r) ctx.moveTo(p[0], p[1]); else ctx.lineTo(p[0], p[1]);
-      }
+      for (var pi = 0; pi < pts.length; pi++) ctx[pi ? "lineTo" : "moveTo"](pts[pi][0], pts[pi][1]);
       ctx.stroke();
+      if (fronts.length) {
+        for (var pj = 1; pj < pts.length; pj++) {
+          var cmp = Math.max(pts[pj][2], pts[pj - 1][2]);
+          if (cmp < 0.04) continue;
+          ctx.strokeStyle = "rgba(167,139,250," + Math.min(0.95, 0.15 + 1.5 * cmp) + ")";
+          ctx.lineWidth = 1 + 2.4 * cmp;
+          ctx.beginPath(); ctx.moveTo(pts[pj - 1][0], pts[pj - 1][1]); ctx.lineTo(pts[pj][0], pts[pj][1]); ctx.stroke();
+        }
+      }
     }
 
     /* Earth and its Moon */
@@ -252,17 +314,59 @@
       ctx.beginPath(); ctx.moveTo(mid[0], mid[1]); ctx.lineTo(head[0], head[1]); ctx.stroke();
     }
 
-    /* CME shock fronts */
+    /* CMEs as Graduated Cylindrical Shells (Thernisien et al. 2006, 2011),
+       seen face-on: two legs rooted at the Sun joined by a circular front, a
+       tube whose radius is kappa x distance from the Sun, expanding
+       self-similarly. Inside: the twisted magnetic flux rope; ahead: the shock. */
     for (var f = fronts.length - 1; f >= 0; f--) {
       var fr = fronts[f];
-      fr.s += fr.v * dt; fr.life -= dt * 0.28;
+      fr.le += fr.v * dt; fr.life -= dt * 0.22;
       if (fr.life <= 0) { fronts.splice(f, 1); continue; }
-      ctx.strokeStyle = "rgba(255,255,255," + (0.55 * fr.life) + ")";
-      ctx.lineWidth = 2.5 + 3 * fr.life;
-      ctx.beginPath(); ctx.arc(sun.x, sun.y, fr.s, fr.a - fr.w, fr.a + fr.w); ctx.stroke();
-      ctx.strokeStyle = "rgba(251,113,133," + (0.35 * fr.life) + ")";
-      ctx.lineWidth = 10 * fr.life;
-      ctx.beginPath(); ctx.arc(sun.x, sun.y, fr.s - 10, fr.a - fr.w * 0.8, fr.a + fr.w * 0.8); ctx.stroke();
+      var g = gcs(fr), L = fr.life;
+      ctx.beginPath();
+      for (var i = 0; i < g.outer.length; i++) ctx[i ? "lineTo" : "moveTo"](g.outer[i][0], g.outer[i][1]);
+      for (var i2 = g.inner.length - 1; i2 >= 0; i2--) ctx.lineTo(g.inner[i2][0], g.inner[i2][1]);
+      ctx.closePath();
+      ctx.fillStyle = "rgba(251,146,180," + (0.14 * L) + ")";
+      ctx.fill();
+      /* twisted flux-rope field lines: helices wound round the shell's axis */
+      /* sampled along the axis by arc length, with a pitch proportional to the
+         tube radius so the twist stays self-similar as the rope expands */
+      for (var hlx = 0; hlx < 2; hlx++) {
+        ctx.strokeStyle = "rgba(255,214,235," + (0.42 * L) + ")";
+        ctx.lineWidth = 1.1;
+        ctx.beginPath();
+        var phase = fr.ph + hlx * Math.PI, first = true;
+        for (var m = 1; m < g.axis.length; m++) {
+          var A0 = g.axis[m - 1], A1 = g.axis[m];
+          var segL = Math.hypot(A1[0] - A0[0], A1[1] - A0[1]);
+          var step = Math.max(2, 0.12 * (A0[4] + A1[4]) / 2), nst = Math.max(1, Math.ceil(segL / step));
+          for (var u = 0; u < nst; u++) {
+            var tt = u / nst, rr = A0[4] + (A1[4] - A0[4]) * tt;
+            var nxx = A0[2] + (A1[2] - A0[2]) * tt, nyy = A0[3] + (A1[3] - A0[3]) * tt;
+            phase += (segL / nst) / (2.4 * Math.max(4, rr)) * 2 * Math.PI;
+            var off = 0.7 * rr * Math.sin(phase);
+            var hx = A0[0] + (A1[0] - A0[0]) * tt + off * nxx, hy = A0[1] + (A1[1] - A0[1]) * tt + off * nyy;
+            if (first) { ctx.moveTo(hx, hy); first = false; } else ctx.lineTo(hx, hy);
+          }
+        }
+        ctx.stroke();
+      }
+      ctx.lineJoin = "round";
+      ctx.strokeStyle = "rgba(255,255,255," + (0.75 * L) + ")";
+      ctx.lineWidth = 2 + 1.5 * L;
+      ctx.beginPath();
+      for (var j = 0; j < g.outer.length; j++) ctx[j ? "lineTo" : "moveTo"](g.outer[j][0], g.outer[j][1]);
+      ctx.stroke();
+      ctx.strokeStyle = "rgba(251,113,133," + (0.45 * L) + ")";
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      for (var k2 = 0; k2 < g.inner.length; k2++) ctx[k2 ? "lineTo" : "moveTo"](g.inner[k2][0], g.inner[k2][1]);
+      ctx.stroke();
+      var sw = fr.alpha + Math.asin(Math.min(0.95, fr.kappa)) + 0.12;
+      ctx.strokeStyle = "rgba(196,181,253," + (0.45 * L) + ")";
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.arc(sun.x, sun.y, fr.le * 1.1, fr.a - sw, fr.a + sw); ctx.stroke();
     }
 
     /* the Sun: corona glow, rays, disk with limb darkening */
