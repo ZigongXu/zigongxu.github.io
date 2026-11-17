@@ -9,6 +9,9 @@ on:
     branches: ['main']
   # Allows you to run this workflow manually from the Actions tab on GitHub
   workflow_dispatch:
+  # Rebuild daily so the mission map shows today's spacecraft positions
+  schedule:
+    - cron: '23 5 * * *'
 
 # Provide permission to clone the repo and deploy it to GitHub Pages
 permissions:
@@ -85,6 +88,14 @@ jobs:
     - name: Setup Pages
       id: pages
       uses: actions/configure-pages@v5
+
+    - name: Fetch spacecraft positions (NASA/JPL Horizons)
+      # Used by the homepage mission map. If Horizons is unreachable, the map
+      # falls back to schematic orbits, so this step never fails the build.
+      continue-on-error: true
+      run: |
+        mkdir -p static/data
+        python3 scripts/fetch_positions.py static/data/spacecraft.json
 
     - name: Build with Hugo
       env:
