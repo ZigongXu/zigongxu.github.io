@@ -67,6 +67,3 @@ Desktop.ini
 
 *.log
 npm-debug.log*
-
-# Generated at build time by scripts/fetch_positions.py
-static/data/spacecraft.json
