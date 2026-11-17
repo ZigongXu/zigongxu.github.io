@@ -1,26 +1,26 @@
 #!/usr/bin/env python3
 """Fetch heliocentric positions of my missions from NASA/JPL Horizons.
 
-Writes a small JSON file used by the homepage mission map: positions in the
+Writes the JSON file used by the homepage mission map: positions in the
 ecliptic plane (J2000, x toward the vernal equinox, viewed from the north),
-in au, for a window of +/- WINDOW_DAYS around today (UTC).
+in au, over a fixed date range. The file is committed to the repository; the
+page works out the positions for the visitor's current date from it.
 
-Runs during every website build (see .github/workflows/deploy.yml), which is
-also scheduled daily, so the map always opens on today's real positions.
+Run by .github/workflows/ephemeris.yml (on demand, from the Actions tab).
 Standard library only. If Horizons cannot be reached, the script exits
-non-zero, writes nothing, and the map falls back to its schematic orbits.
+non-zero and writes nothing, so the committed file stays as it was.
 
-Usage: python3 scripts/fetch_positions.py static/data/spacecraft.json
+Usage: python3 scripts/fetch_positions.py OUT.json [START YYYY-MM-DD] [STOP YYYY-MM-DD]
 """
 import json
 import sys
 import time
 import urllib.parse
 import urllib.request
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 
 API = "https://ssd.jpl.nasa.gov/api/horizons.api"
-WINDOW_DAYS = 180
+DEFAULT_START, DEFAULT_STOP = "2025-01-01", "2028-12-31"
 # key: (Horizons id, step in hours). PSP moves fast near perihelion: finer step.
 BODIES = {
     "psp": ("-96", 6),     # Parker Solar Probe
@@ -65,13 +65,13 @@ def fetch(command, start, stop, step_h):
     for row in rows:
         f = [c.strip() for c in row.split(",")]
         # JDTDB, Calendar date, X, Y, Z
-        xy += [round(float(f[2]), 5), round(float(f[3]), 5)]
+        xy += [round(float(f[2]), 4), round(float(f[3]), 4)]
     return xy
 
 
-def main(out):
-    today = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
-    start, stop = today - timedelta(days=WINDOW_DAYS), today + timedelta(days=WINDOW_DAYS)
+def main(out, start, stop):
+    start = datetime.strptime(start, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+    stop = datetime.strptime(stop, "%Y-%m-%d").replace(tzinfo=timezone.utc)
     data = {
         "source": "NASA/JPL Horizons",
         "frame": "heliocentric ecliptic J2000, au",
@@ -89,4 +89,7 @@ def main(out):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1] if len(sys.argv) > 1 else "static/data/spacecraft.json")
+    a = sys.argv[1:]
+    main(a[0] if a else "static/data/ephemeris.json",
+         a[1] if len(a) > 1 else DEFAULT_START,
+         a[2] if len(a) > 2 else DEFAULT_STOP)

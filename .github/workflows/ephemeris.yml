@@ -1,0 +1,51 @@
+name: Update spacecraft ephemeris
+
+# Fetches positions of Parker Solar Probe, Solar Orbiter and Earth from
+# NASA/JPL Horizons and commits them to static/data/ephemeris.json, which the
+# homepage mission map reads. Run it from the Actions tab whenever you want
+# fresher trajectory predictions or a different date range.
+on:
+  workflow_dispatch:
+    inputs:
+      start:
+        description: First date (YYYY-MM-DD)
+        default: '2025-01-01'
+      stop:
+        description: Last date (YYYY-MM-DD)
+        default: '2028-12-31'
+
+permissions:
+  contents: write   # commit the data file
+  actions: write    # start the website deploy afterwards
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch positions from JPL Horizons
+        run: |
+          mkdir -p static/data
+          python3 scripts/fetch_positions.py static/data/ephemeris.json "${{ inputs.start }}" "${{ inputs.stop }}"
+
+      - name: Commit if changed
+        id: commit
+        run: |
+          git config user.name "ephemeris-bot"
+          git config user.email "ephemeris-bot@users.noreply.github.com"
+          git add static/data/ephemeris.json
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "Update spacecraft ephemeris (${{ inputs.start }} to ${{ inputs.stop }}, JPL Horizons)"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Redeploy the website
+        # Pushes made with GITHUB_TOKEN don't trigger other workflows, so start the deploy explicitly.
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref "${{ github.ref_name }}"
